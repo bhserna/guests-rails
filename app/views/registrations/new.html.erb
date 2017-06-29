@@ -1,0 +1,36 @@
+<style>
+</style>
+
+<%= form_for form, as: :user, url: registrations_url, method: :post do |f| %>
+  <div class="form-control">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div class="form-control">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div class="form-control">
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </div>
+
+  <div class="form-control">
+    <%= f.label :user_type %>
+    <%= f.select :user_type, form.user_type_options.map { |option| option.values_at(:text, :value) } %>
+  </div>
+
+  <div class="form-control">
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+
+  <div class="form-control">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+  <%= f.button "Registrarme" %>
+<% end %>
