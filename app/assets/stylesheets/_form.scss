@@ -1,0 +1,55 @@
+$red: #e65d4f;
+
+.form {
+  font-family: Helvetica, sans-serif;
+  font-size: 1.1em;
+  line-height: 1.3em;
+  max-width: 400px;
+  margin: auto;
+}
+
+.form-title {
+  text-align: center;
+  line-height: 1.2em;
+  margin-top: 1em;
+}
+
+.form-group {
+  margin-bottom: 1em;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-control, .form-group select {
+  display: block;
+  width: 100%;
+  font-size: 1em;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  height: 45px;
+  padding: 10px;
+}
+
+.form-control, .form-group select {
+  display: block;
+  width: 100%;
+  font-size: 1em;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  height: 45px;
+  padding: 10px;
+}
+
+.form-group--with-errors {
+  color: $red;
+
+  .form-control, .form-group select {
+    border-color: $red;
+  }
+}
+

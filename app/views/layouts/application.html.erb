@@ -9,6 +9,10 @@
   </head>
 
   <body>
+    <% if current_user? %>
+      <%= button_to "Cerrar sesión", session_path, method: :delete, class: "btn btn--sm session-btn" %>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

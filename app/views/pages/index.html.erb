@@ -5,6 +5,7 @@
   line-height: 1.6em;
   max-width: 650px;
   margin: auto;
+  padding: 1px;
 }
 
 .pitch__title {
@@ -15,21 +16,20 @@
 
 .pitch__btn-box {
   text-align: center;
+  margin: 1em 0 3em;
 }
 
-.pitch__btn-box > a {
-  font-size: 1.5em;
-  margin: 1em 0 3em;
-  padding: 1em;
-  display: block;
-}
 </style>
+
+<% unless current_user? %>
+  <%= link_to "Iniciar sesión", new_session_path, class: "btn btn--sm btn--blue session-btn" %>
+<% end %>
 
 <div class="pitch">
   <h1 class="pitch__title">Te ayudamos crear y confirmar la lista de invitados para tu evento.</h1>
 
   <div class="pitch__btn-box">
-    <%= link_to "Crear mi lista de invitados", new_registration_path %>
+    <%= link_to "Crear mi lista de invitados", new_registration_path, class: "btn btn--lg btn--blue" %>
   </div>
 
   <p>Tal vez ya te diste cuenta que hacer una lista de invitados no es tan fácil, ya que es normal:</p>
@@ -68,6 +68,6 @@
   </ul>
 
   <div class="pitch__btn-box">
-    <%= link_to "Crear mi lista de invitados", new_registration_path %>
+    <%= link_to "Crear mi lista de invitados", new_registration_path, class: "btn btn--lg btn--blue" %>
   </div>
 </div>

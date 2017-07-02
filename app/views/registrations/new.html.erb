@@ -1,36 +1,14 @@
-<style>
-</style>
+<%= form_for form, as: :user, url: registrations_url, method: :post, html: {class: "form"} do |f| %>
+  <h1 class="form-title">Registrarme</h1>
 
-<%= form_for form, as: :user, url: registrations_url, method: :post do |f| %>
-  <div class="form-control">
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
-  </div>
+  <%= form_group f, :first_name %>
+  <%= form_group f, :last_name %>
+  <%= form_group f, :email, field_method: :email_field %>
+  <%= form_group f, :user_type,
+    field_method: :select,
+    select_options: form.user_type_options.map { |option| option.values_at(:text, :value) } %>
+  <%= form_group f, :password, field_method: :password_field %>
+  <%= form_group f, :password_confirmation, field_method: :password_field %>
 
-  <div class="form-control">
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
-  </div>
-
-  <div class="form-control">
-    <%= f.label :email %>
-    <%= f.email_field :email %>
-  </div>
-
-  <div class="form-control">
-    <%= f.label :user_type %>
-    <%= f.select :user_type, form.user_type_options.map { |option| option.values_at(:text, :value) } %>
-  </div>
-
-  <div class="form-control">
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
-
-  <div class="form-control">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </div>
-
-  <%= f.button "Registrarme" %>
+  <%= f.button "Registrarme", class: "btn btn--md btn--blue" %>
 <% end %>

@@ -1,0 +1,13 @@
+<%= form_for form, as: :user, url: session_url, method: :post, html: {class: "form"} do |f| %>
+  <h1 class="form-title">Iniciar sesión</h1>
+
+  <% if local_assigns[:error].present? %>
+    <div class="alert alert--error">
+      <%= local_assigns[:error] %>
+    </div>
+  <% end %>
+
+  <%= form_group f, :email %>
+  <%= form_group f, :password, field_method: :password_field %>
+  <%= f.button "Enviar", class: "btn btn--md btn--blue" %>
+<% end %>
