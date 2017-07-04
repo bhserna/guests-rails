@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :check_current_user, only: [:new, :create]
+
   def new
     render locals: {form: login_form}
   end
@@ -26,5 +28,11 @@ class SessionsController < ApplicationController
 
   private def login_form
     Users.login_form
+  end
+
+  private def check_current_user
+    if current_user?
+      redirect_to lists_path
+    end
   end
 end

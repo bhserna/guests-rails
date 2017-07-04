@@ -10,7 +10,10 @@
 
   <body>
     <% if current_user? %>
-      <%= button_to "Cerrar sesión", session_path, method: :delete, class: "btn btn--sm session-btn" %>
+      <div class="top-buttons">
+        <%= link_to "Mis listas", lists_path, class: "btn btn--sm btn--blue" %>
+        <%= button_to "Cerrar sesión", session_path, method: :delete, class: "btn btn--sm" %>
+      </div>
     <% end %>
 
     <%= yield %>

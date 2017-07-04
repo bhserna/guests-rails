@@ -1,28 +1,7 @@
-<style>
-.pitch {
-  font-family: Helvetica, sans-serif;
-  font-size: 1.1em;
-  line-height: 1.6em;
-  max-width: 650px;
-  margin: auto;
-  padding: 1px;
-}
-
-.pitch__title {
-  text-align: center;
-  line-height: 1.2em;
-  margin: 3em 0 1em;
-}
-
-.pitch__btn-box {
-  text-align: center;
-  margin: 1em 0 3em;
-}
-
-</style>
-
 <% unless current_user? %>
-  <%= link_to "Iniciar sesión", new_session_path, class: "btn btn--sm btn--blue session-btn" %>
+  <div class="top-buttons">
+    <%= link_to "Iniciar sesión", new_session_path, class: "btn btn--sm btn--blue" %>
+  </div>
 <% end %>
 
 <div class="pitch">
