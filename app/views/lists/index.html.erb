@@ -5,7 +5,8 @@
   </div>
 
   <ul>
-    <li><%= link_to "Lista uno", "#" %></li>
-    <li><%= link_to "Lista uno", "#" %></li>
+    <% lists.each do |list| %>
+      <li><%= link_to list.name, list_path(list.id), class: "lists__list-link" %></li>
+    <% end %>
   </ul>
 </div>
