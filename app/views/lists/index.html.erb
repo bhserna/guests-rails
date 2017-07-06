@@ -1,2 +1,11 @@
-<h1>Listas</h1>
-<%= current_user %>
+<div class="lists">
+  <h1 class="lists__title">Mis listas</h1>
+  <div class="lists__btn-box">
+    <%= link_to "Crear lista", "#", class: "btn btn--sm btn--blue" %>
+  </div>
+
+  <ul>
+    <li><%= link_to "Lista uno", "#" %></li>
+    <li><%= link_to "Lista uno", "#" %></li>
+  </ul>
+</div>
