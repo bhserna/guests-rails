@@ -4,11 +4,11 @@ require_relative "../lists_spec"
 module Lists
   describe "Add invitation" do
     it "new invitation" do
-      invitation = Lists.get_empty_invitation
-      expect(invitation.title).to eq nil
-      expect(invitation.phone).to eq nil
-      expect(invitation.email).to eq nil
-      expect(invitation.guests.count).to eq 0
+      form = Lists.get_invitation_form
+      expect(form.title).to eq nil
+      expect(form.phone).to eq nil
+      expect(form.email).to eq nil
+      expect(form.guests.count).to eq 0
     end
 
     it "creates a record" do
@@ -31,8 +31,8 @@ module Lists
         email: "bh@example.com"
       })
 
-      response = Lists.add_invitation(list_id, params, store)
-      expect(response).to be_success
+      status = Lists.add_invitation(list_id, params, store)
+      expect(status).to be_success
     end
 
     it "needs a title" do
@@ -47,8 +47,9 @@ module Lists
         "email" => "bh@example.com"
       }
       expect(store).not_to receive(:create)
-      response = Lists.add_invitation(list_id, params, store)
-      expect(response).not_to be_success
+      status = Lists.add_invitation(list_id, params, store)
+      expect(status).not_to be_success
+      expect(status.form.errors[:title]).to eq "no puede estar en blanco"
     end
   end
 end

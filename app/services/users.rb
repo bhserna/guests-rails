@@ -151,7 +151,7 @@ module Users
 
       def errors
         [validate_confirmation,
-         *validate_presense_of(form, *form.fields)]
+         *validate_presence_of(form, *form.fields)]
           .compact.to_h
       end
 

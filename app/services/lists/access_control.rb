@@ -93,7 +93,7 @@ module Lists
       extend Validations
 
       def self.validate(form)
-        [*validate_presense_of(form, *form.to_h.keys)].compact.to_h
+        [*validate_presence_of(form, *form.to_h.keys)].compact.to_h
       end
     end
 

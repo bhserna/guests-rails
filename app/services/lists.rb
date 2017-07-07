@@ -92,17 +92,42 @@ module Lists
     end
   end
 
-  def self.get_empty_invitation
-    Invitation.new
+  class InvitationForm < SimpleDelegator
+    attr_reader :errors
+
+    def initialize(invitation)
+      super(invitation)
+      @errors = {}
+    end
+
+    def add_errors(errors)
+      @errors = errors
+    end
+  end
+
+  class Validator
+    extend Validations
+
+    def self.validate(form)
+      [*validate_presence_of(form, :title)].compact.to_h
+    end
+  end
+
+  def self.get_invitation_form
+    InvitationForm.new(Invitation.new)
   end
 
   def self.add_invitation(list_id, params, store)
     invitation = Invitation.new(params)
-    if invitation.title.present?
+    form = InvitationForm.new(invitation)
+    errors = Validator.validate(form)
+
+    if errors.empty?
       store.create(invitation.creation_data.merge(list_id: list_id))
       SuccessResponse
     else
-      ErrorResponse
+      form.add_errors(errors)
+      ErrorWithForm.new(form)
     end
   end
 
