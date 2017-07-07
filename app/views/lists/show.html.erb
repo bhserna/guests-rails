@@ -1,0 +1,26 @@
+<div class="list">
+  <h1 class="list__title"><%= list.name %></h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>Invitados</th>
+        <th>Teléfono</th>
+        <th>Email</th>
+        <th>¿Entregada?</th>
+        <th>Confirmados</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <td><input class="form-control" id="title" placeholder="Familia Perez"/></td>
+      <td><input class="form-control" id="guests" placeholder="Carlos, Juanita, Martha..."/></td>
+      <td><input class="form-control" id="phone" placeholder="111-111-1111"/></td>
+      <td><input class="form-control" id="email" placeholder="carlitos@example.com"/></td>
+      <td><input class="form-control" id="is_delivered" type="checkbox"></td>
+      <td><input class="form-control" id="confirmed_guests_count" type="number"></td>
+      <td><button class="btn btn--md btn--blue">Guardar</button></td>
+    </tbody>
+  </table>
+</div>

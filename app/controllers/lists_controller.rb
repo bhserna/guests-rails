@@ -21,4 +21,17 @@ class ListsController < ApplicationController
     lists = Lists.lists_of_user(current_user, ListRecord, ListPeopleRecord)
     render locals: {lists: lists}
   end
+
+  def show
+    render locals: {
+      list: Lists.get_list(list_id, ListRecord),
+      invitations: Lists.get_invitations(list_id, ListInvitationRecord)
+    }
+  end
+
+  private
+
+  def list_id
+    params[:id]
+  end
 end

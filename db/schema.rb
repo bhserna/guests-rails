@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170706015331) do
+ActiveRecord::Schema.define(version: 20170707001638) do
+
+  create_table "list_invitation_records", force: :cascade do |t|
+    t.string "list_id"
+    t.string "title"
+    t.text "guests"
+    t.string "phone"
+    t.string "email"
+    t.boolean "is_delivered"
+    t.boolean "is_assistance_confirmed"
+    t.integer "confirmed_guests_count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "list_people_records", force: :cascade do |t|
     t.string "list_id"
