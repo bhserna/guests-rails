@@ -14,13 +14,14 @@
       </tr>
     </thead>
     <tbody>
-      <td><input class="form-control" id="title" placeholder="Familia Perez"/></td>
-      <td><input class="form-control" id="guests" placeholder="Carlos, Juanita, Martha..."/></td>
-      <td><input class="form-control" id="phone" placeholder="111-111-1111"/></td>
-      <td><input class="form-control" id="email" placeholder="carlitos@example.com"/></td>
-      <td><input class="form-control" id="is_delivered" type="checkbox"></td>
-      <td><input class="form-control" id="confirmed_guests_count" type="number"></td>
-      <td><button class="btn btn--md btn--blue">Guardar</button></td>
     </tbody>
   </table>
+
+
+  <%= form_for invitation_form, as: :invitation, url: list_invitations_path(list.id), method: :post, html: {class: "form"} do |f| %>
+    <h1 class="form-title">Agregar invitación</h1>
+    <%= form_group f, :title %>
+    <%= form_group f, :guests %>
+    <%= f.button "Agregar", class: "btn btn--md btn--blue" %>
+  <% end %>
 </div>
