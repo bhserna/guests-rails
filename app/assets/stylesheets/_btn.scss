@@ -41,14 +41,22 @@ $small: 0.75em;
   }
 }
 
+.btn {
+  background-color: #f1f1f1;
+  color: black;
+}
+
 .btn--blue {
   background-color: $blue;
+  color: #fff;
 }
 .btn--green {
   background-color: $green;
+  color: #fff;
 }
 .btn--red {
   background-color: $red;
+  color: #fff;
 }
 
 .btn--lg {

@@ -33,9 +33,23 @@
           <td><%= invitation.guests.split(",").join(", ") %></td>
           <td><%= invitation.email %></td>
           <td><%= invitation.phone %></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td>
+            <% if invitation.delivered? %>
+              <span>Sí</span>
+              <%= button_to "Revertir", "#", class: "btn" %>
+            <% else %>
+              <%= button_to "Confirmar entrega", "#", class: "btn" %>
+            <% end %>
+          </td>
+          <td>
+            <% if invitation.has_assistance_confirmed? %>
+              <span>Sí</span>
+              <%= button_to "Revertir", "#", class: "btn" %>
+            <% else %>
+              <%= button_to "Confirmar asistencia", "#", class: "btn" %>
+            <% end %>
+          </td>
+          <td><%= button_to "Editar", "#", class: "btn" %></td>
         </tr>
         <% end %>
       </tbody>
