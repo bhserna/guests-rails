@@ -8,7 +8,7 @@ module Lists
       expect(form.title).to eq nil
       expect(form.phone).to eq nil
       expect(form.email).to eq nil
-      expect(form.guests.count).to eq 0
+      expect(form.guests).to eq nil
     end
 
     it "creates a record" do
@@ -16,9 +16,7 @@ module Lists
       list_id = 1234
       params = {
         "title" => "Uno",
-        "guests" => [
-          {"id" => 1, "name" => "Benito"},
-          {"id" => 2, "name" => "Maripaz"}],
+        "guests" => "Benito, Maripaz",
         "phone" => "1234-1234",
         "email" => "bh@example.com"
       }
@@ -26,7 +24,7 @@ module Lists
       expect(store).to receive(:create).with({
         list_id: list_id,
         title: "Uno",
-        guests: [{id: 1, name: "Benito"}, {id: 2, name: "Maripaz"}],
+        guests: "Benito, Maripaz",
         phone: "1234-1234",
         email: "bh@example.com"
       })
@@ -40,9 +38,7 @@ module Lists
       list_id = 1234
       params = {
         "title" => "",
-        "guests" => [
-          {"id" => 1, "name" => "Benito"},
-          {"id" => 2, "name" => "Maripaz"}],
+        "guests" => "Benito, Maripaz",
         "phone" => "1234-1234",
         "email" => "bh@example.com"
       }

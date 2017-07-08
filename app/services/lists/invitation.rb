@@ -5,7 +5,7 @@ module Lists
     def initialize(data = {})
       @id = get_value(data, :id)
       @title = get_value(data, :title)
-      @guests = build_guests(get_value(data, :guests))
+      @guests = get_value(data, :guests)
       @phone = get_value(data, :phone)
       @email = get_value(data, :email)
       @is_delivered = get_value(data, :is_delivered)
@@ -17,7 +17,7 @@ module Lists
       {title: title,
        phone: phone,
        email: email,
-       guests: guests.map { |guest| {id: guest.id, name: guest.name}}}
+       guests: guests}
     end
 
     def delivered?
@@ -30,27 +30,12 @@ module Lists
 
     private
 
-    def build_guests(guests_data)
-      (guests_data || []).map do |data|
-        Guest.new(*get_values(data, :id, :name))
-      end
-    end
-
     def get_value(data, key)
       data[key] || data[key.to_s]
     end
 
     def get_values(data, *keys)
       keys.map {|key| get_value(data, key)}
-    end
-
-    class Guest
-      attr_reader :id, :name
-
-      def initialize(id, name)
-        @id = id
-        @name = name
-      end
     end
   end
 end

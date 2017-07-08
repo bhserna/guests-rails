@@ -6,22 +6,34 @@
       <tr>
         <th>Título</th>
         <th>Invitados</th>
-        <th>Teléfono</th>
         <th>Email</th>
+        <th>Teléfono</th>
         <th>¿Entregada?</th>
         <th>Confirmados</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
+      <% invitations.each do |invitation| %>
+      <tr>
+        <td><%= invitation.title %></td>
+        <td><%= invitation.guests.split(",").join(", ") %></td>
+        <td><%= invitation.email %></td>
+        <td><%= invitation.phone %></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <% end %>
     </tbody>
   </table>
 
 
-  <%= form_for invitation_form, as: :invitation, url: list_invitations_path(list.id), method: :post, html: {class: "form"} do |f| %>
+  <%= form_for invitation_form, as: :invitation, url: list_invitations_path(list.id), method: :post, html: {class: "form invitation-form"} do |f| %>
     <h1 class="form-title">Agregar invitación</h1>
     <%= form_group f, :title %>
     <%= form_group f, :guests, control_class: "js-selectize" %>
+    <%= form_group f, :email %>
+    <%= form_group f, :phone %>
     <%= f.button "Agregar", class: "btn btn--md btn--blue" %>
   <% end %>
 </div>

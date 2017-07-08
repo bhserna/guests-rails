@@ -7,16 +7,14 @@ module Lists
       store = FakeInvitationsStore.new({id: id})
       params = {
         "title" => "Uno",
-        "guests" => [
-          {"id" => 1, "name" => "Benito"},
-          {"id" => 2, "name" => "Maripaz"}],
+        "guests" => "Benito, Maripaz",
         "phone" => "1234-1234",
         "email" => "bh@example.com"
       }
 
       expect(store).to receive(:update).with(id, {
         title: "Uno",
-        guests: [{id: 1, name: "Benito"}, {id: 2, name: "Maripaz"}],
+        guests: "Benito, Maripaz",
         phone: "1234-1234",
         email: "bh@example.com"
       })

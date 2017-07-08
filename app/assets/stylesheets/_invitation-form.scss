@@ -1,0 +1,38 @@
+.invitation-form {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 300px;
+  padding: 2em 3em;
+  border: 1px solid #ccc;
+  box-shadow: -5px 7px 0px #ccc;
+  background: white;
+
+  .form-title {
+    margin-top: 0em;
+    font-size: 1.5em
+  }
+
+  .selectize-control {
+    padding: 0;
+    border: none;
+    min-height: 45px;
+    height: auto;
+  }
+
+  .selectize-input {
+    min-height: 45px;
+    height: auto;
+    font-size: 17.6px;
+
+    .item {
+      padding: 7px !important;
+      font-size: 17.6px;
+    }
+
+    input {
+      padding: 3px !important;
+      font-size: 17.6px !important;
+    }
+  }
+}
