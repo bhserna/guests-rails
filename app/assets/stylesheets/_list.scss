@@ -1,16 +1,25 @@
 .list {
   line-height: 1.3em;
-  max-width: 1200px;
+  max-width: 100%;
   margin: auto;
-
-  .table {
-    font-size: 0.9em;
-    margin: auto;
-  }
 }
 
 .list__title {
-  text-align: center;
-  line-height: 1.2em;
-  margin-top: 3em;
+  text-align: left;
+  line-height: .2em;
+  margin: 1em 0.5em 2em;
+}
+
+.list__form {
+  float: left;
+  box-shadow: 5px 5px 0px #ccc;
+  margin-right: 1em;
+  padding: 0em 2em 2em 1em;
+}
+
+.list__table {
+  .table {
+    font-size: 0.9em;
+    margin: 0;
+  }
 }
