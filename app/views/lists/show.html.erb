@@ -33,12 +33,17 @@
           <td><%= invitation.guests.split(",").join(", ") %></td>
           <td><%= invitation.email %></td>
           <td><%= invitation.phone %></td>
-          <td>
+          <td class="list__delivered-cell">
             <% if invitation.delivered? %>
               <span>Sí</span>
-              <%= button_to "Revertir", "#", class: "btn" %>
+              <%= button_to list_invitation_delivery_mark_path(list.id, invitation.id), method: :delete, remote: true, class: "btn" do %>
+                <span class="fa fa-undo"></span>
+              <% end %>
             <% else %>
-              <%= button_to "Confirmar entrega", "#", class: "btn" %>
+              <%= button_to list_invitation_delivery_mark_path(list.id, invitation.id), remote: true, class: "btn" do %>
+                <span>Confirmar</span>
+                <span>Entrega</span>
+              <% end %>
             <% end %>
           </td>
           <td>
@@ -46,7 +51,10 @@
               <span>Sí</span>
               <%= button_to "Revertir", "#", class: "btn" %>
             <% else %>
-              <%= button_to "Confirmar asistencia", "#", class: "btn" %>
+              <%= button_to "#", class: "btn" do %>
+                <span>Confirmar</span>
+                <span>Asistencia</span>
+              <% end %>
             <% end %>
           </td>
           <td><%= button_to "Editar", "#", class: "btn" %></td>
