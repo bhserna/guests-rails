@@ -24,7 +24,8 @@
   }
 }
 
-.list__delivered-cell {
+.list__delivered-cell, .list__assistance-cell, .list__actions-cell {
+  min-width: 100px;
   text-align: center;
 
   form {

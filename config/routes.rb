@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :lists, only: [:new, :create, :index, :show] do
     resources :invitations, only: [:create] do
       resource :delivery_mark, only: [:create, :destroy]
+      resource :guests_confirmation, only: [:new, :create]
     end
   end
 end

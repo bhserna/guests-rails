@@ -28,6 +28,10 @@ module Lists
       !!@is_assistance_confirmed
     end
 
+    def guests_count
+      guests.split(",").count
+    end
+
     private
 
     def get_value(data, key)

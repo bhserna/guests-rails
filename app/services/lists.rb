@@ -144,6 +144,10 @@ module Lists
     store.update(id, is_delivered: false)
   end
 
+  def self.confirm_invitation_guests_form(id, store)
+    InvitationForm.new(get_invitation(id, store))
+  end
+
   def self.confirm_invitation_guests(id, count, store)
     store.update(id, confirmed_guests_count: count.to_i, is_assistance_confirmed: true)
   end
