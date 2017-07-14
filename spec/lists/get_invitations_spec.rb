@@ -33,7 +33,10 @@ module Lists
         id: 4
       }])
 
-      first, second = Lists.get_invitations(list_id, store)
+      invitations = Lists.get_invitations(list_id, store)
+      expect(invitations.count).to eq 2
+
+      first, second = invitations
       expect(first.id).to eq 1
       expect(first.title).to eq "Uno"
       expect(first.guests).to eq "Benito, Maripaz"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170707001638) do
+ActiveRecord::Schema.define(version: 20170714233216) do
 
   create_table "list_invitation_records", force: :cascade do |t|
     t.string "list_id"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20170707001638) do
     t.integer "confirmed_guests_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_deleted"
   end
 
   create_table "list_people_records", force: :cascade do |t|

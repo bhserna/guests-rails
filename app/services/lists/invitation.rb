@@ -8,6 +8,7 @@ module Lists
       @guests = get_value(data, :guests)
       @phone = get_value(data, :phone)
       @email = get_value(data, :email)
+      @is_deleted = get_value(data, :is_deleted)
       @is_delivered = get_value(data, :is_delivered)
       @confirmed_guests_count = get_value(data, :confirmed_guests_count)
       @is_assistance_confirmed = get_value(data, :is_assistance_confirmed)
@@ -18,6 +19,10 @@ module Lists
        phone: phone,
        email: email,
        guests: guests}
+    end
+
+    def deleted?
+      !!@is_deleted
     end
 
     def delivered?

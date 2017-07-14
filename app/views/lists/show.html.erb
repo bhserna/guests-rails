@@ -44,7 +44,7 @@
       </thead>
       <tbody>
         <% invitations.each do |invitation| %>
-        <tr>
+        <tr id="invitation_<%= invitation.id %>">
           <td><%= invitation.title %></td>
           <td><%= invitation.guests.split(",").join(", ") %></td>
           <td><%= invitation.email %></td>
@@ -79,7 +79,7 @@
             <%= button_to edit_list_invitation_path(list.id, invitation.id), method: :get, class: "btn" do %>
               <span class="fa fa-pencil"></span>
             <% end %>
-            <%= button_to "#", method: :get, class: "btn" do %>
+            <%= button_to list_invitation_path(list.id, invitation.id), method: :delete, class: "btn", remote: true do %>
               <span class="fa fa-trash"></span>
             <% end %>
           </td>

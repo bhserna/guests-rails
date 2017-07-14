@@ -28,6 +28,12 @@ class InvitationsController < ApplicationController
     end
   end
 
+  def destroy
+    Lists.delete_invitation(invitation_id, ListInvitationRecord)
+    redirect_to list_path(list_id)
+    #render locals: {invitation_id: invitation_id}
+  end
+
   private
 
   def invitation_id

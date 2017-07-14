@@ -176,6 +176,6 @@ module Lists
   def self.get_invitations(list_id, store)
     store.find_all_by_list_id(list_id).map do |data|
       Invitation.new(data)
-    end
+    end.reject(&:deleted?)
   end
 end
