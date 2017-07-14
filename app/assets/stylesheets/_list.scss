@@ -11,17 +11,32 @@
 }
 
 .list__form {
+  width: 250px;
   float: left;
-  box-shadow: 5px 5px 0px #ccc;
   margin-right: 1em;
   padding: 0em 2em 2em 1em;
+
+  .form-title {
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 1em;
+    font-size: 1.2em
+  }
 }
 
 .list__table {
   .table {
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
     font-size: 0.9em;
     margin: 0;
   }
+}
+
+.list__stats {
+  display: inline-block;
+  margin: 0 1em 2.5em;
+  margin-top: 0;
 }
 
 .list__delivered-cell, .list__assistance-cell, .list__actions-cell {

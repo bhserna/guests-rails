@@ -131,9 +131,22 @@ module Lists
     end
   end
 
+  def self.get_edit_invitation_form(id, store)
+    InvitationForm.new(get_invitation(id, store))
+  end
+
   def self.update_invitation(id, params, store)
     invitation = Invitation.new(params)
-    store.update(id, invitation.creation_data)
+    form = InvitationForm.new(invitation)
+    errors = Validator.validate(form)
+
+    if errors.empty?
+      store.update(id, invitation.creation_data)
+      SuccessResponse
+    else
+      form.add_errors(errors)
+      ErrorWithForm.new(form)
+    end
   end
 
   def self.mark_invitation_as_delivered(id, store)

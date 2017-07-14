@@ -9,11 +9,27 @@
       <%= form_group f, :guests, control_class: "js-selectize" %>
       <%= form_group f, :email %>
       <%= form_group f, :phone %>
-      <%= f.button "Agregar", class: "btn btn--sm btn--blue" %>
+      <%= f.button "Agregar", class: "btn btn--md btn--blue" %>
     <% end %>
   </div>
 
   <div class="list__table">
+    <div class="list__stats alert alert--info">
+      Invitaciones: <%= invitations.count %>
+    </div>
+
+    <div class="list__stats alert alert--info">
+      Invitados: <%= invitations.map { |invitation| invitation.guests.split(",").count }.reduce(0, :+) %>
+    </div>
+
+    <div class="list__stats alert alert--info">
+      Invitaciones entregadas: <%= invitations.count(&:delivered?) %>
+    </div>
+
+    <div class="list__stats alert alert--info">
+      Invitados confirmados: <%= invitations.map(&:confirmed_guests_count).compact.reduce(0, :+) %>
+    </div>
+
     <table class="table table-striped">
       <thead>
         <tr>
@@ -23,7 +39,7 @@
           <th>Teléfono</th>
           <th>¿Entregada?</th>
           <th>Confirmados</th>
-          <th></th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -60,7 +76,7 @@
             <% end %>
           </td>
           <td class="list__actions-cell">
-            <%= button_to "#", method: :get, class: "btn" do %>
+            <%= button_to edit_list_invitation_path(list.id, invitation.id), method: :get, class: "btn" do %>
               <span class="fa fa-pencil"></span>
             <% end %>
             <%= button_to "#", method: :get, class: "btn" do %>
