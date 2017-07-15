@@ -1,7 +1,8 @@
 <% unless current_user? %>
-  <div class="top-buttons">
+  <%= content_for :top_buttons do %>
+    <%= link_to "Registrarme", new_registration_path, class: "btn btn--sm btn--blue" %>
     <%= link_to "Iniciar sesión", new_session_path, class: "btn btn--sm btn--blue" %>
-  </div>
+  <% end %>
 <% end %>
 
 <div class="pitch">
@@ -51,14 +52,13 @@
   <div class="alert alert--info">
     <h3>Software para crear lista de invitados</h3>
     <h1>$0</h1>
-    <p>Sip... gratis, gratis, todas las listas que necesites.</p>
+    <p>Gratis todas las listas que necesites.</p>
   </div>
 
-  <div class="alert alert--default">
-    <h3>Confimación de 300 invitados vía correo electrónico</h3>
-    <strong><span class="fa fa-alert"></span> Aún no está disponible</strong>
-    <h1>$500 MXN</h1>
-    <p>Después de 300 invitados $1000 MXN por hasta 1000 invitados.</p>
+  <div class="pitch__unavailable-package alert alert--default">
+    <strong><span class="fa fa-exclamation-circle"></span> Aún no está disponible</strong>
+    <h3>Confimación de invitados vía correo electrónico</h3>
+    <h1>$5 MXN / invitación</h1>
   </div>
 
   <div class="pitch__btn-box">

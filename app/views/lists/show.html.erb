@@ -14,19 +14,19 @@
   </div>
 
   <div class="list__table">
-    <div class="list__stats alert alert--info">
+    <div class="list__stats alert alert--default">
       Invitaciones: <%= invitations.count %>
     </div>
 
-    <div class="list__stats alert alert--info">
+    <div class="list__stats alert alert--default">
       Invitados: <%= invitations.map { |invitation| invitation.guests.split(",").count }.reduce(0, :+) %>
     </div>
 
-    <div class="list__stats alert alert--info">
+    <div class="list__stats alert alert--default">
       Invitaciones entregadas: <%= invitations.count(&:delivered?) %>
     </div>
 
-    <div class="list__stats alert alert--info">
+    <div class="list__stats alert alert--default">
       Invitados confirmados: <%= invitations.map(&:confirmed_guests_count).compact.reduce(0, :+) %>
     </div>
 

@@ -2,4 +2,8 @@
   font-family: Helvetica, sans-serif;
   font-size: 1.1em;
   padding: 1px;
+
+  a:not(.btn) {
+    color: #3498db;
+  }
 }
