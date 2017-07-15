@@ -1,14 +1,14 @@
 <%= form_for form, as: :user, url: registrations_url, method: :post, html: {class: "form"} do |f| %>
   <h1 class="form-title">Registrarme</h1>
 
-  <%= form_group f, :first_name %>
-  <%= form_group f, :last_name %>
+  <%= form_group f, :first_name, label: "Nombre" %>
+  <%= form_group f, :last_name, label: "Apellidos" %>
   <%= form_group f, :email, field_method: :email_field %>
-  <%= form_group f, :user_type,
+  <%= form_group f, :user_type, label: "Roll",
     field_method: :select,
     select_options: form.user_type_options.map { |option| option.values_at(:text, :value) } %>
-  <%= form_group f, :password, field_method: :password_field %>
-  <%= form_group f, :password_confirmation, field_method: :password_field %>
+  <%= form_group f, :password, label: "Contraseña", field_method: :password_field %>
+  <%= form_group f, :password_confirmation, label: "Confirmación de contraseña", field_method: :password_field %>
 
   <%= f.button "Registrarme", class: "btn btn--md btn--blue" %>
 <% end %>

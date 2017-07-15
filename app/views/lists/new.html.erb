@@ -1,5 +1,5 @@
 <%= form_for form, as: :list, url: lists_url, method: :post, html: {class: "form"} do |f| %>
   <h1 class="form-title">Nueva lista</h1>
-  <%= form_group f, :name %>
+  <%= form_group f, :name, label: "Nombre" %>
   <%= f.button "Crear lista", class: "btn btn--md btn--blue" %>
 <% end %>

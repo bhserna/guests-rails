@@ -1,10 +1,10 @@
 <%= form_for form, as: :confirmation, url: list_invitation_guests_confirmation_path(list_id, invitation_id),
  method: :post, html: {class: "form invitation-form"} do |f| %>
   <h1 class="form-title">Confirmación de asistencia</h1>
-  <%= form_group f, :guests, control_class: "js-selectize", control_options: {disabled: true} %>
-  <%= form_group f, :phone, control_options: {disabled: true} %>
+  <%= form_group f, :guests, label: "Invitados", control_class: "js-selectize", control_options: {disabled: true} %>
+  <%= form_group f, :phone, label: "Teléfono", control_options: {disabled: true} %>
   <%= form_group f, :email, control_options: {disabled: true} %>
-  <%= form_group f, :confirmed_guests_count, field_method: :number_field, control_options: {min: 0} %>
+  <%= form_group f, :confirmed_guests_count, label: "Número de invitados confirmados", field_method: :number_field, control_options: {min: 0} %>
   <%= f.button "Confirmar", class: "btn btn--md btn--blue" %>
   <%= link_to "Cancelar", list_path(list_id), method: :get, class: "btn btn--md" %>
 <% end %>

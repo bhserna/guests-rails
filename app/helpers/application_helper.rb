@@ -24,9 +24,13 @@ module ApplicationHelper
     end
   end
 
+  def form_label(form, field, options)
+    form.label(field, options.delete(:label))
+  end
+
   def form_group(form, field, options = {})
     content_tag :div, class: form_group_class(form, field) do
-      concat form.label(field)
+      concat form_label(form, field, options)
       concat form_control(form, field, options)
       concat form_field_errors(form, field)
     end

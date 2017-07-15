@@ -8,6 +8,6 @@
   <% end %>
 
   <%= form_group f, :email %>
-  <%= form_group f, :password, field_method: :password_field %>
+  <%= form_group f, :password, label: "Contraseña", field_method: :password_field %>
   <%= f.button "Enviar", class: "btn btn--md btn--blue" %>
 <% end %>
