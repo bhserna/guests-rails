@@ -1,5 +1,6 @@
 $red: #e65d4f;
 $blue: #3498db;
+$gray: gray;
 
 .alert {
   line-height: 1.2em;
@@ -21,4 +22,11 @@ $blue: #3498db;
   color: $blue;
   border-radius: 3px;
   box-shadow: 5px 5px 0px lighten($blue, 20%);
+}
+
+.alert--default {
+  border-color: $gray;
+  color: $gray;
+  border-radius: 3px;
+  box-shadow: 5px 5px 0px lighten($gray, 20%);
 }
