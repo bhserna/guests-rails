@@ -18,6 +18,7 @@ module Lists
       params = {
         "title" => "Uno",
         "guests" => "Benito, Maripaz",
+        "group" => "Amigos Maripaz",
         "phone" => "1234-1234",
         "email" => "bh@example.com"
       }
@@ -25,6 +26,7 @@ module Lists
       expect(store).to receive(:update).with(id, {
         title: "Uno",
         guests: "Benito, Maripaz",
+        group: "Amigos Maripaz",
         phone: "1234-1234",
         email: "bh@example.com"
       })

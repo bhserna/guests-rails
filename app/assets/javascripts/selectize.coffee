@@ -1,9 +1,11 @@
-selector = ".js-selectize"
-
 $(document).on "ready, turbolinks:load", ->
-  $(selector).selectize
+  $(".js-selectize-guests").selectize
     delimiter: ','
     persist: false
     create: (input) ->
       value: input
       text: input
+
+  $(".js-selectize-group").selectize
+    create: true,
+    sortField: 'text

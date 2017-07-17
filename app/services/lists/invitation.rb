@@ -1,11 +1,12 @@
 module Lists
   class Invitation
-    attr_reader :id, :title, :guests, :phone, :email, :confirmed_guests_count
+    attr_reader :id, :title, :guests, :group, :phone, :email, :confirmed_guests_count
 
     def initialize(data = {})
       @id = get_value(data, :id)
       @title = get_value(data, :title)
       @guests = get_value(data, :guests)
+      @group = get_value(data, :group)
       @phone = get_value(data, :phone)
       @email = get_value(data, :email)
       @is_deleted = get_value(data, :is_deleted)
@@ -17,6 +18,7 @@ module Lists
     def creation_data
       {title: title,
        phone: phone,
+       group: group,
        email: email,
        guests: guests}
     end

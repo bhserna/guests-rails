@@ -113,7 +113,7 @@ module Lists
     end
   end
 
-  def self.get_invitation_form
+  def self.get_invitation_form()
     InvitationForm.new(Invitation.new)
   end
 

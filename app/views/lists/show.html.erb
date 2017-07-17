@@ -6,7 +6,7 @@
       remote: true, html: {class: "form js-invitation-form invitation-form"} do |f| %>
       <h1 class="form-title">Agregar invitación</h1>
       <%= form_group f, :title, label: "Título" %>
-      <%= form_group f, :guests, label: "Invitados", control_class: "js-selectize" %>
+      <%= form_group f, :guests, label: "Invitados", control_class: "js-selectize-guests" %>
       <%= form_group f, :email %>
       <%= form_group f, :phone, label: "Teléfono" %>
       <%= f.button "Agregar", class: "btn btn--md btn--blue" %>
