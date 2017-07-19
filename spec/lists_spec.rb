@@ -66,6 +66,10 @@ module Lists
       @records.detect { |r| r[:id] == id }
     end
 
+    def find_all_groups
+      @records.map { |r| r[:group] }.uniq.compact
+    end
+
     def find_all_by_list_id(list_id)
       @records.select { |r| r[:list_id] == list_id }
     end

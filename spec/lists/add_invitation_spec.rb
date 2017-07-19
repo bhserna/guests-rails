@@ -61,13 +61,23 @@ module Lists
       params = {
         "title" => "",
         "guests" => "Benito, Maripaz",
+        "group" => "Amigos Benito",
         "phone" => "1234-1234",
         "email" => "bh@example.com"
       }
       expect(store).not_to receive(:create)
+
       status = Lists.add_invitation(list_id, params, store)
       expect(status).not_to be_success
-      expect(status.form.errors[:title]).to eq "no puede estar en blanco"
+
+      form = status.form
+      expect(form.errors[:title]).to eq "no puede estar en blanco"
+      expect(form.title).to eq ""
+      expect(form.guests).to eq "Benito, Maripaz"
+      expect(form.group).to eq "Amigos Benito"
+      expect(form.phone).to eq "1234-1234"
+      expect(form.email).to eq "bh@example.com"
+      expect(form.group_options).to eq []
     end
   end
 end

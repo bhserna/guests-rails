@@ -26,7 +26,7 @@ class ListsController < ApplicationController
     render locals: {
       list: Lists.get_list(list_id, ListRecord),
       invitations: Lists.get_invitations(list_id, ListInvitationRecord),
-      invitation_form: Lists.get_invitation_form
+      invitation_form: Lists.get_invitation_form(ListInvitationRecord)
     }
   end
 

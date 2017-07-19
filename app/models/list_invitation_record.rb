@@ -4,4 +4,8 @@ class ListInvitationRecord < ApplicationRecord
   def self.find_all_by_list_id(list_id)
     where(list_id: list_id)
   end
+
+  def self.find_all_groups
+    where.not(group: nil).pluck(:group).uniq
+  end
 end

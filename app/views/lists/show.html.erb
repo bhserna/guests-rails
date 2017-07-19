@@ -7,6 +7,11 @@
       <h1 class="form-title">Agregar invitación</h1>
       <%= form_group f, :title, label: "Título" %>
       <%= form_group f, :guests, label: "Invitados", control_class: "js-selectize-guests" %>
+      <%= form_group f, :group, label: "Grupo",
+        field_method: :select,
+        choices: invitation_form.group_options,
+        select_options: {include_blank: true},
+        control_class: "js-selectize-group" %>
       <%= form_group f, :email %>
       <%= form_group f, :phone, label: "Teléfono" %>
       <%= f.button "Agregar", class: "btn btn--md btn--blue" %>
@@ -35,6 +40,7 @@
         <tr>
           <th>Título</th>
           <th>Invitados</th>
+          <th>Grupo</th>
           <th>Email</th>
           <th>Teléfono</th>
           <th>¿Entregada?</th>
@@ -47,6 +53,7 @@
         <tr id="invitation_<%= invitation.id %>">
           <td><%= invitation.title %></td>
           <td><%= invitation.guests.split(",").join(", ") %></td>
+          <td><%= invitation.group %></td>
           <td><%= invitation.email %></td>
           <td><%= invitation.phone %></td>
           <td class="list__delivered-cell">

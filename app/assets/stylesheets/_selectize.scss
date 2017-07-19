@@ -29,6 +29,10 @@ $control-font-size: 17.6px;
   }
 }
 
+.selectize-dropdown {
+  height: auto;
+}
+
 .selectize-control .selectize-input.disabled {
   background: #eee;
   cursor: not-allowed !important;

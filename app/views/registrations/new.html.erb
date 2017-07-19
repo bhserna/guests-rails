@@ -6,7 +6,7 @@
   <%= form_group f, :email, field_method: :email_field %>
   <%= form_group f, :user_type, label: "Roll",
     field_method: :select,
-    select_options: form.user_type_options.map { |option| option.values_at(:text, :value) } %>
+    choices: form.user_type_options.map { |option| option.values_at(:text, :value) } %>
   <%= form_group f, :password, label: "Contraseña", field_method: :password_field %>
   <%= form_group f, :password_confirmation, label: "Confirmación de contraseña", field_method: :password_field %>
 

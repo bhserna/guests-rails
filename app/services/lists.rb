@@ -105,6 +105,15 @@ module Lists
     end
   end
 
+  class InvitationFormWithGroups < InvitationForm
+    attr_reader :group_options
+
+    def initialize(invitation, groups)
+      super(invitation)
+      @group_options = groups
+    end
+  end
+
   class Validator
     extend Validations
 
@@ -113,13 +122,13 @@ module Lists
     end
   end
 
-  def self.get_invitation_form()
-    InvitationForm.new(Invitation.new)
+  def self.get_invitation_form(store)
+    InvitationFormWithGroups.new(Invitation.new, store.find_all_groups)
   end
 
   def self.add_invitation(list_id, params, store)
     invitation = Invitation.new(params)
-    form = InvitationForm.new(invitation)
+    form = InvitationFormWithGroups.new(invitation, store.find_all_groups)
     errors = Validator.validate(form)
 
     if errors.empty?
@@ -132,12 +141,12 @@ module Lists
   end
 
   def self.get_edit_invitation_form(id, store)
-    InvitationForm.new(get_invitation(id, store))
+    InvitationFormWithGroups.new(get_invitation(id, store), store.find_all_groups)
   end
 
   def self.update_invitation(id, params, store)
     invitation = Invitation.new(params)
-    form = InvitationForm.new(invitation)
+    form = InvitationFormWithGroups.new(invitation, store.find_all_groups)
     errors = Validator.validate(form)
 
     if errors.empty?
