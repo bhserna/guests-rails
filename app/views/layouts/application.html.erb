@@ -29,5 +29,10 @@
     </div>
 
     <%= yield %>
+
+    <%= link_to support_page_path, class: "support-btn btn btn--sm btn--blue" do %>
+      <span class="fa fa-question-circle"></span>
+      <span>Soporte</span>
+    <% end %>
   </body>
 </html>
