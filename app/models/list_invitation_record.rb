@@ -5,7 +5,7 @@ class ListInvitationRecord < ApplicationRecord
     where(list_id: list_id)
   end
 
-  def self.find_all_groups
-    where.not(group: nil).pluck(:group).uniq
+  def self.find_all_groups_by_list_id(list_id)
+    where(list_id: list_id).where.not(group: nil).pluck(:group).uniq
   end
 end

@@ -12,7 +12,8 @@ module Lists
     end
 
     it "new invitation" do
-      form = Lists.get_invitation_form(store_with([]))
+      list_id = 1234
+      form = Lists.get_invitation_form(list_id, store_with([]))
       expect(form.title).to eq nil
       expect(form.phone).to eq nil
       expect(form.group).to eq nil
@@ -21,13 +22,15 @@ module Lists
     end
 
     it "has the group options" do
+      list_id = 1234
       store = store_with([
-        invitation_with(group: "uno"),
-        invitation_with(group: "uno"),
-        invitation_with(group: "dos")
+        invitation_with(list_id: list_id, group: "uno"),
+        invitation_with(list_id: list_id, group: "uno"),
+        invitation_with(list_id: list_id, group: "dos"),
+        invitation_with(list_id: "other", group: "otro")
       ])
 
-      form = Lists.get_invitation_form(store)
+      form = Lists.get_invitation_form(list_id, store)
       expect(form.group_options).to eq ["uno", "dos"]
     end
 

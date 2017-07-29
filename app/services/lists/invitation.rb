@@ -1,9 +1,10 @@
 module Lists
   class Invitation
-    attr_reader :id, :title, :guests, :group, :phone, :email, :confirmed_guests_count
+    attr_reader :id, :list_id, :title, :guests, :group, :phone, :email, :confirmed_guests_count
 
     def initialize(data = {})
       @id = get_value(data, :id)
+      @list_id = get_value(data, :list_id)
       @title = get_value(data, :title)
       @guests = get_value(data, :guests)
       @group = get_value(data, :group)

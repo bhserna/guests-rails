@@ -122,13 +122,13 @@ module Lists
     end
   end
 
-  def self.get_invitation_form(store)
-    InvitationFormWithGroups.new(Invitation.new, store.find_all_groups)
+  def self.get_invitation_form(list_id, store)
+    InvitationFormWithGroups.new(Invitation.new, store.find_all_groups_by_list_id(list_id))
   end
 
   def self.add_invitation(list_id, params, store)
     invitation = Invitation.new(params)
-    form = InvitationFormWithGroups.new(invitation, store.find_all_groups)
+    form = InvitationFormWithGroups.new(invitation, store.find_all_groups_by_list_id(list_id))
     errors = Validator.validate(form)
 
     if errors.empty?
@@ -141,12 +141,13 @@ module Lists
   end
 
   def self.get_edit_invitation_form(id, store)
-    InvitationFormWithGroups.new(get_invitation(id, store), store.find_all_groups)
+    invitation = get_invitation(id, store)
+    InvitationFormWithGroups.new(invitation, store.find_all_groups_by_list_id(invitation.list_id))
   end
 
   def self.update_invitation(id, params, store)
     invitation = Invitation.new(params)
-    form = InvitationFormWithGroups.new(invitation, store.find_all_groups)
+    form = InvitationFormWithGroups.new(invitation, store.find_all_groups_by_list_id(invitation.list_id))
     errors = Validator.validate(form)
 
     if errors.empty?
