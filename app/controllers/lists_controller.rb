@@ -25,8 +25,9 @@ class ListsController < ApplicationController
   def show
     render locals: {
       list: Lists.get_list(list_id, ListRecord),
+      groups: Lists.get_list_groups(list_id, ListInvitationRecord),
       invitations: Lists.get_invitations(list_id, ListInvitationRecord),
-      invitation_form: Lists.get_invitation_form(list_id, ListInvitationRecord)
+      invitation_form: Lists.get_invitation_form
     }
   end
 

@@ -32,6 +32,17 @@
   }
 }
 
+.list__filter {
+  display: inline-block;
+  float: right;
+  position: relative;
+  top: -27px;
+
+  .form {
+    width: 250px;
+  }
+}
+
 .list__stats {
   display: inline-block;
   margin: 0 1em 2.5em;

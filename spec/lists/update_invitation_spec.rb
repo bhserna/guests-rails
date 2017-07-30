@@ -16,18 +16,6 @@ module Lists
       expect(form.guests).to eq "Benito, Maripaz"
     end
 
-    it "has the group options" do
-      id = rand(100)
-      store = store_with([
-        {id: id, group: "uno"},
-        {group: "uno"},
-        {group: "dos"}
-      ])
-
-      form = Lists.get_edit_invitation_form(id, store)
-      expect(form.group_options).to eq ["uno", "dos"]
-    end
-
     it "updates the record" do
       id = rand(100)
       store = store_with([{id: id}])
@@ -72,7 +60,6 @@ module Lists
       expect(form.group).to eq nil
       expect(form.phone).to eq "1234-1234"
       expect(form.email).to eq "bh@example.com"
-      expect(form.group_options).to eq []
     end
   end
 end

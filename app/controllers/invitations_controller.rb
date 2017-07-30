@@ -7,6 +7,7 @@ class InvitationsController < ApplicationController
     else
       render status: 422, locals: {
         list: Lists.get_list(list_id, ListRecord),
+        groups: Lists.get_list_groups(list_id, ListInvitationRecord),
         invitations: Lists.get_invitations(list_id, ListInvitationRecord),
         invitation_form: status.form
       }
@@ -15,7 +16,12 @@ class InvitationsController < ApplicationController
 
   def edit
     form = Lists.get_edit_invitation_form(invitation_id, ListInvitationRecord)
-    render locals: {form: form, list_id: list_id, invitation_id: invitation_id}
+    render locals: {
+      form: form,
+      list_id: list_id,
+      invitation_id: invitation_id,
+      groups: Lists.get_list_groups(list_id, ListInvitationRecord)
+    }
   end
 
   def update
@@ -24,7 +30,12 @@ class InvitationsController < ApplicationController
     if status.success?
       redirect_to list_path(list_id)
     else
-      render :edit, locals: {form: status.form, list_id: list_id, invitation_id: invitation_id}
+      render :edit, locals: {
+        form: status.form,
+        list_id: list_id,
+        invitation_id: invitation_id,
+        groups: List.get_list_groups(list_id, ListInvitationRecord)
+      }
     end
   end
 
