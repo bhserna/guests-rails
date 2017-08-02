@@ -1,4 +1,12 @@
+@import "neat";
+
+$list-grid: (
+  columns: 10,
+  gutter: 20px,
+);
+
 .list {
+  @include grid-container;
   line-height: 1.3em;
   max-width: 100%;
   margin: auto;
@@ -11,10 +19,7 @@
 }
 
 .list__form {
-  width: 250px;
-  float: left;
-  margin-right: 1em;
-  padding: 0em 2em 2em 1em;
+  @include grid-column(2, $list-grid);
 
   .form-title {
     text-align: left;
@@ -25,10 +30,13 @@
 }
 
 .list__table {
+  @include grid-column(8, $list-grid);
+
   .table {
     font-size: 0.9em;
     margin: 0;
     margin-bottom: 5em;
+    width: 100%;
   }
 }
 
