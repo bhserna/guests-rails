@@ -21,7 +21,9 @@ module Lists
         invitation_with(list_id: list_id, group: "uno"),
         invitation_with(list_id: list_id, group: "uno"),
         invitation_with(list_id: list_id, group: "dos"),
-        invitation_with(list_id: "other", group: "otro")
+        invitation_with(list_id: "other", group: "otro"),
+        invitation_with(list_id: list_id, group: ""),
+        invitation_with(list_id: list_id, group: nil)
       ])
 
       groups = Lists.get_list_groups(list_id, store)

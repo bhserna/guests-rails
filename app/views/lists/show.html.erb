@@ -29,12 +29,15 @@
     </div>
 
     <div class="list__filter">
-      <%= form_for invitation_form, as: :invitation, url: list_invitations_path(list.id), method: :post,
+      <%= form_for :invitation, url: list_invitations_path(list.id), method: :post,
         remote: true, html: {class: "form invitation-form"} do |f| %>
+        <% if params[:group].present? %>
+          <%= link_to "Remover filtro", list_path(list.id), class: "list__filter-remover" %>
+        <% end %>
         <%= form_group f, :group, label: "Filtrar por grupo",
           field_method: :select,
           choices: groups,
-          select_options: {include_blank: true},
+          select_options: {include_blank: true, selected: params[:group]},
           control_class: "js-selectize--filter-by-group" %>
       <% end %>
     </div>
@@ -57,7 +60,7 @@
         <tr id="invitation_<%= invitation.id %>">
           <td><%= invitation.title %></td>
           <td><%= invitation.guests.split(",").join(", ") %></td>
-          <td><%= invitation.group %></td>
+          <td><%= link_to invitation.group, list_path(list.id, group: invitation.group) %></td>
           <td><%= invitation.email %></td>
           <td><%= invitation.phone %></td>
           <td class="list__delivered-cell">

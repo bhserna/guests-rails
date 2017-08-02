@@ -13,6 +13,8 @@ window.Selectize =
 
     $(".js-selectize--filter-by-group").selectize
       sortField: 'text'
+      onChange: (value) ->
+        Turbolinks.visit("#{location.pathname}?group=#{value}")
 
 $(document).on "ready, turbolinks:load", ->
   Selectize.init()

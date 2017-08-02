@@ -174,13 +174,19 @@ module Lists
     Invitation.new(store.find(id))
   end
 
-  def self.get_invitations(list_id, store)
-    store.find_all_by_list_id(list_id).map do |data|
-      Invitation.new(data)
-    end.reject(&:deleted?)
+  def self.get_invitations(list_id, store, group: nil)
+    all = store.find_all_by_list_id(list_id)
+      .map{ |data| Invitation.new(data) }
+      .reject(&:deleted?)
+
+    if group.present?
+      all.select{ |invitation| invitation.group == group }
+    else
+      all
+    end
   end
 
   def self.get_list_groups(list_id, store)
-    store.find_all_groups_by_list_id(list_id)
+    store.find_all_groups_by_list_id(list_id).reject(&:blank?)
   end
 end

@@ -8,7 +8,7 @@ class InvitationsController < ApplicationController
       render status: 422, locals: {
         list: Lists.get_list(list_id, ListRecord),
         groups: Lists.get_list_groups(list_id, ListInvitationRecord),
-        invitations: Lists.get_invitations(list_id, ListInvitationRecord),
+        invitations: Lists.get_invitations(list_id, ListInvitationRecord, group: params[:group]),
         invitation_form: status.form
       }
     end
