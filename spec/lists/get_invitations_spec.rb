@@ -2,9 +2,11 @@ require_relative "../lists_spec"
 
 module Lists
   describe "Get invitation" do
-    it "asks for the record" do
-      list_id = 1234
-      store = FakeInvitationsStore.new([{
+    attr_reader :list_id, :store
+
+    before do
+      @list_id = 1234
+      @store = FakeInvitationsStore.new([{
         list_id: 1234,
         id: 1,
         title: "Uno",
@@ -20,6 +22,7 @@ module Lists
         title: "Dos",
         guests: "Gus, Caro",
         phone: "11-1234-1234",
+        group: "escuela",
         email: "g@example.com",
         is_delivered: false,
         confirmed_guests_count: 0,
@@ -32,7 +35,9 @@ module Lists
         list_id: 12,
         id: 4
       }])
+    end
 
+    it "asks for the record" do
       invitations = Lists.get_invitations(list_id, store)
       expect(invitations.count).to eq 2
 
@@ -54,6 +59,15 @@ module Lists
       expect(second).not_to be_delivered
       expect(second).not_to have_assistance_confirmed
       expect(second.confirmed_guests_count).to eq 0
+    end
+
+    it "filter by group" do
+      invitations = Lists.get_invitations(list_id, store, group: "escuela")
+      expect(invitations.count).to eq 1
+
+      second = invitations.first
+      expect(second.id).to eq 2
+      expect(second.guests).to eq "Gus, Caro"
     end
   end
 end

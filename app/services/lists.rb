@@ -105,15 +105,6 @@ module Lists
     end
   end
 
-  class InvitationFormWithGroups < InvitationForm
-    attr_reader :group_options
-
-    def initialize(invitation, groups)
-      super(invitation)
-      @group_options = groups
-    end
-  end
-
   class Validator
     extend Validations
 
@@ -122,13 +113,13 @@ module Lists
     end
   end
 
-  def self.get_invitation_form(list_id, store)
-    InvitationFormWithGroups.new(Invitation.new, store.find_all_groups_by_list_id(list_id))
+  def self.get_invitation_form
+    InvitationForm.new(Invitation.new)
   end
 
   def self.add_invitation(list_id, params, store)
     invitation = Invitation.new(params)
-    form = InvitationFormWithGroups.new(invitation, store.find_all_groups_by_list_id(list_id))
+    form = InvitationForm.new(invitation)
     errors = Validator.validate(form)
 
     if errors.empty?
@@ -142,12 +133,12 @@ module Lists
 
   def self.get_edit_invitation_form(id, store)
     invitation = get_invitation(id, store)
-    InvitationFormWithGroups.new(invitation, store.find_all_groups_by_list_id(invitation.list_id))
+    InvitationForm.new(invitation)
   end
 
   def self.update_invitation(id, params, store)
     invitation = Invitation.new(params)
-    form = InvitationFormWithGroups.new(invitation, store.find_all_groups_by_list_id(invitation.list_id))
+    form = InvitationForm.new(invitation)
     errors = Validator.validate(form)
 
     if errors.empty?
@@ -183,9 +174,19 @@ module Lists
     Invitation.new(store.find(id))
   end
 
-  def self.get_invitations(list_id, store)
-    store.find_all_by_list_id(list_id).map do |data|
-      Invitation.new(data)
-    end.reject(&:deleted?)
+  def self.get_invitations(list_id, store, group: nil)
+    all = store.find_all_by_list_id(list_id)
+      .map{ |data| Invitation.new(data) }
+      .reject(&:deleted?)
+
+    if group.present?
+      all.select{ |invitation| invitation.group == group }
+    else
+      all
+    end
+  end
+
+  def self.get_list_groups(list_id, store)
+    store.find_all_groups_by_list_id(list_id).reject(&:blank?)
   end
 end

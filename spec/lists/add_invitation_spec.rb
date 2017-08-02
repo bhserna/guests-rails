@@ -12,26 +12,12 @@ module Lists
     end
 
     it "new invitation" do
-      list_id = 1234
-      form = Lists.get_invitation_form(list_id, store_with([]))
+      form = Lists.get_invitation_form
       expect(form.title).to eq nil
       expect(form.phone).to eq nil
       expect(form.group).to eq nil
       expect(form.email).to eq nil
       expect(form.guests).to eq nil
-    end
-
-    it "has the group options" do
-      list_id = 1234
-      store = store_with([
-        invitation_with(list_id: list_id, group: "uno"),
-        invitation_with(list_id: list_id, group: "uno"),
-        invitation_with(list_id: list_id, group: "dos"),
-        invitation_with(list_id: "other", group: "otro")
-      ])
-
-      form = Lists.get_invitation_form(list_id, store)
-      expect(form.group_options).to eq ["uno", "dos"]
     end
 
     it "creates a record" do
@@ -80,7 +66,6 @@ module Lists
       expect(form.group).to eq "Amigos Benito"
       expect(form.phone).to eq "1234-1234"
       expect(form.email).to eq "bh@example.com"
-      expect(form.group_options).to eq []
     end
   end
 end
