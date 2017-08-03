@@ -1,20 +1,26 @@
+selectize = ($el, options) ->
+  $(document).on 'turbolinks:before-cache', ->
+    $el[0]?.selectize?.destroy()
+
+  $el.selectize(options)
+
 window.Selectize =
   init: ->
-    $(".js-selectize--guests").selectize
+    selectize $(".js-selectize--guests"),
       delimiter: ','
       persist: false
       create: (input) ->
         value: input
         text: input
 
-    $(".js-selectize--group").selectize
+    selectize $(".js-selectize--group"),
       create: true
       sortField: 'text'
 
-    $(".js-selectize--filter-by-group").selectize
+    selectize $(".js-selectize--filter-by-group"),
       sortField: 'text'
       onChange: (value) ->
-        Turbolinks.visit("#{location.pathname}?group=#{value}")
+        Turbolinks.visit("#{location.pathname}?group=#{value}", action: "replace")
 
 $(document).on "ready, turbolinks:load", ->
   Selectize.init()

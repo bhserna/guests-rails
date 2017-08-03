@@ -32,7 +32,7 @@
       <%= form_for :invitation, url: list_invitations_path(list.id), method: :post,
         remote: true, html: {class: "form invitation-form"} do |f| %>
         <% if params[:group].present? %>
-          <%= link_to "Remover filtro", list_path(list.id), class: "list__filter-remover" %>
+          <%= link_to "Remover filtro", list_path(list.id), class: "list__filter-remover", "data-turbolinks-action" => "replace" %>
         <% end %>
         <%= form_group f, :group, label: "Filtrar por grupo",
           field_method: :select,
@@ -60,7 +60,10 @@
         <tr id="invitation_<%= invitation.id %>">
           <td><%= invitation.title %></td>
           <td><%= invitation.guests.split(",").join(", ") %></td>
-          <td><%= link_to invitation.group, list_path(list.id, group: invitation.group) %></td>
+          <td>
+            <% if invitation.group.present? %>
+              <%= link_to invitation.group, list_path(list.id, group: invitation.group), "data-turbolinks-action" => "replace" %></td>
+            <% end %>
           <td><%= invitation.email %></td>
           <td><%= invitation.phone %></td>
           <td class="list__delivered-cell">
