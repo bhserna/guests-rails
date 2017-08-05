@@ -9,6 +9,10 @@ module Lists
     def update(id, attrs)
     end
 
+    def all
+      @records
+    end
+
     def find_by_list_id(id)
       @records.detect { |r| r[:list_id] == id }
     end
@@ -63,15 +67,22 @@ module Lists
     end
 
     def find(id)
-      @records.detect { |r| r[:id] == id }
+      @records.detect{|r| r[:id] == id}
     end
 
     def find_all_groups_by_list_id(list_id)
-      find_all_by_list_id(list_id).map { |r| r[:group] }.uniq.compact
+      find_all_by_list_id(list_id).map{|r| r[:group]}.uniq.compact
+    end
+
+    def counts_by_list_id
+      @records
+        .group_by{|r| r[:list_id]}
+        .map{|list_id, records| [list_id, records.count]}
+        .to_h
     end
 
     def find_all_by_list_id(list_id)
-      @records.select { |r| r[:list_id] == list_id }
+      @records.select {|r| r[:list_id] == list_id}
     end
   end
 end

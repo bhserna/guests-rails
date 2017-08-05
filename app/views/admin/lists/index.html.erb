@@ -1,0 +1,22 @@
+<h1>Listas</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Invitados</th>
+      <th>Usuario</th>
+      <th>Creada</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% lists.each do |list| %>
+      <tr>
+        <td><%= link_to list.name, list_path(list.id) %></td>
+        <td><%= list.invitations_count %></td>
+        <td><%= list.user_full_name %></td>
+        <td><%= time_ago_in_words list.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

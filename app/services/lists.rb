@@ -21,12 +21,13 @@ module Lists
   end
 
   class List
-    attr_reader :id, :name, :user_id
+    attr_reader :id, :name, :user_id, :created_at
 
     def initialize(data)
       @id = data[:list_id]
       @name = data[:name]
       @user_id = data[:user_id]
+      @created_at = data[:created_at]
     end
   end
 
@@ -50,6 +51,16 @@ module Lists
 
   def self.get_list(list_id, lists_store)
     List.new(lists_store.find_by_list_id(list_id))
+  end
+
+  def self.get_all_lists(lists_store, invitations_store, users_store)
+    users = users_store.all.map{|data| User.new(data)}.group_by(&:id)
+    invitations_counts = invitations_store.counts_by_list_id
+    lists_store.all
+      .map{|data| List.new(data)}
+      .sort_by(&:created_at)
+      .map{|list| ListWithUser.new(list, users[list.user_id].first)}
+      .map{|list| ListWithInvitationsCount.new(list, invitations_counts[list.id] || 0)}
   end
 
   def self.current_access_details(*args)
@@ -78,39 +89,6 @@ module Lists
 
   def self.has_access?(*args)
     AccessControl.has_access?(*args)
-  end
-
-  class SuccessResponse
-    def self.success?
-      true
-    end
-  end
-
-  class ErrorResponse
-    def self.success?
-      false
-    end
-  end
-
-  class InvitationForm < SimpleDelegator
-    attr_reader :errors
-
-    def initialize(invitation)
-      super(invitation)
-      @errors = {}
-    end
-
-    def add_errors(errors)
-      @errors = errors
-    end
-  end
-
-  class Validator
-    extend Validations
-
-    def self.validate(form)
-      [*validate_presence_of(form, :title)].compact.to_h
-    end
   end
 
   def self.get_invitation_form
@@ -188,5 +166,76 @@ module Lists
 
   def self.get_list_groups(list_id, store)
     store.find_all_groups_by_list_id(list_id).reject(&:blank?)
+  end
+
+  class User
+    attr_reader :id, :first_name, :last_name
+
+    def initialize(data)
+      @id = data[:id]
+      @first_name = data[:first_name]
+      @last_name = data[:last_name]
+    end
+
+    def full_name
+      [first_name, last_name].compact.join(" ")
+    end
+  end
+
+  class ListWithUser < SimpleDelegator
+    def initialize(list, user)
+      super(list)
+      @user = user
+    end
+
+    def user_full_name
+      user.full_name
+    end
+
+    private
+
+    attr_reader :user
+  end
+
+  class ListWithInvitationsCount < SimpleDelegator
+    attr_reader :invitations_count
+
+    def initialize(list, invitations_count)
+      super(list)
+      @invitations_count = invitations_count
+    end
+  end
+
+  class SuccessResponse
+    def self.success?
+      true
+    end
+  end
+
+  class ErrorResponse
+    def self.success?
+      false
+    end
+  end
+
+  class InvitationForm < SimpleDelegator
+    attr_reader :errors
+
+    def initialize(invitation)
+      super(invitation)
+      @errors = {}
+    end
+
+    def add_errors(errors)
+      @errors = errors
+    end
+  end
+
+  class Validator
+    extend Validations
+
+    def self.validate(form)
+      [*validate_presence_of(form, :title)].compact.to_h
+    end
   end
 end

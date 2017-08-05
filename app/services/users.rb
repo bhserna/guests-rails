@@ -39,8 +39,20 @@ module Users
     User.new(record)
   end
 
-  def self.get_users_list(store)
-    store.all.map { |data| User.new(data) }
+  def self.get_users_list(users_store, lists_store)
+    lists = lists_store.all.map { |data| List.new(data) }.group_by(&:user_id)
+    users_store.all.map do |data|
+      user = User.new(data)
+      UserWithListsCount.new(user, lists[user.id] || [])
+    end
+  end
+
+  class List
+    attr_reader :list_id, :user_id
+    def initialize(data)
+      @list_id = data[:list_id]
+      @user_id = data[:user_id]
+    end
   end
 
   class User
@@ -61,6 +73,15 @@ module Users
 
     def wedding_planner?
       @user_type == "wedding_planner"
+    end
+  end
+
+  class UserWithListsCount < SimpleDelegator
+    attr_reader :lists_count
+
+    def initialize(user, lists)
+      super(user)
+      @lists_count = lists.count
     end
   end
 
