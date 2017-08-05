@@ -1,9 +1,17 @@
 require_relative "../users_spec"
 
 RSpec.describe "Register user" do
-  class DummyStore
-    def self.save(data)
+  class FakeStore
+    def initialize(records = [])
+      @records = records
+    end
+
+    def save(data)
       data
+    end
+
+    def find_by_email(email)
+      @records.detect { |r| r[:email] == email }
     end
   end
 
@@ -59,7 +67,7 @@ RSpec.describe "Register user" do
     attr_reader :data, :store
 
     before do
-      @store = DummyStore
+      @store = FakeStore.new
       @data = {
         "first_name" => "Juanito",
         "last_name" => "Perez",
@@ -107,7 +115,7 @@ RSpec.describe "Register user" do
     attr_reader :data, :store
 
     before do
-      @store = DummyStore
+      @store = FakeStore.new
       @data = {
         "first_name" => "",
         "last_name" => nil,
@@ -141,11 +149,44 @@ RSpec.describe "Register user" do
     end
   end
 
+  describe "with a taken email" do
+    attr_reader :data, :store
+
+    before do
+      @store = FakeStore.new([{email: "j@example.com"}])
+      @data = {
+        "first_name" => "Juanito",
+        "last_name" => "Perez",
+        "email" => "j@example.com",
+        "user_type" => "groom",
+        "password" => "1234secret",
+        "password_confirmation" => "1234secret"
+      }
+    end
+
+    it "does not creates the record" do
+      expect(store).not_to receive(:save)
+      register_user(data, store)
+    end
+
+    it "returns errors for each field" do
+      registration = register_user(data, store)
+      expect(registration.form.errors).to eq({
+        email: "ya ha sido tomado"
+      })
+    end
+
+    it "is not success" do
+      registration = register_user(data, store)
+      expect(registration).not_to be_success
+    end
+  end
+
   describe "with bad password confirmation" do
     attr_reader :data, :store
 
     before do
-      @store = DummyStore
+      @store = FakeStore.new
       @data = {
         "first_name" => "Juanito",
         "last_name" => "Perez",

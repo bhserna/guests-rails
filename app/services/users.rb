@@ -107,7 +107,7 @@ module Users
 
     def self.register_user(data, store:, encryptor:, session_store:)
       form = Form.new(data)
-      errors = Validator.new(form).errors
+      errors = Validator.new(form, store).errors
       return (form.add_errors(errors) and Error.new(form)) if errors.any?
       user = create_record(form, store, encryptor)
       session_store.save_user_id(user[:id])
@@ -145,23 +145,31 @@ module Users
     class Validator
       include Validations
 
-      def initialize(form)
+      def initialize(form, store)
         @form = form
+        @store = store
       end
 
       def errors
         [validate_confirmation,
+         validate_uniqueness_of_email,
          *validate_presence_of(form, *form.fields)]
           .compact.to_h
       end
 
       private
 
-      attr_reader :form
+      attr_reader :form, :store
 
       def validate_confirmation
         unless form.password == form.password_confirmation
           [:password_confirmation, "no coincide"]
+        end
+      end
+
+      def validate_uniqueness_of_email
+        if form.email.present? && store.find_by_email(form.email)
+          [:email, "ya ha sido tomado"]
         end
       end
     end
