@@ -20,6 +20,11 @@
         <span>Simple Guest List</span>
       <% end %>
       <div class="top-buttons">
+        <% if current_admin? %>
+          <%= link_to "Listas", admin_lists_path, class: "btn btn--sm" %>
+          <%= link_to "Usuarios", admin_users_path, class: "btn btn--sm" %>
+        <% end %>
+
         <% if current_user? %>
           <%= link_to "Mis listas", lists_path, class: "btn btn--sm btn--blue" %>
           <%= button_to "Cerrar sesión", session_path, method: :delete, class: "btn btn--sm" %>

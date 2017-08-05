@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_user, :current_user?
+  helper_method :current_user, :current_user?, :current_admin?
 
   private
 
@@ -15,9 +15,13 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_admin
-    if !current_user? || current_user.email != "bhserna@gmail.com"
+    unless current_admin?
       redirect_to root_path
     end
+  end
+
+  def current_admin?
+    current_user? && current_user.email == "bhserna@gmail.com"
   end
 
   def current_user?
