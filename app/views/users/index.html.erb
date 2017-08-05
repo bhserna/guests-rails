@@ -1,0 +1,22 @@
+<h1>Usuarios</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Nombre</th>
+      <th>Email</th>
+      <th>Registrado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.full_name %></td>
+        <td><%= user.email %></td>
+        <td><%= time_ago_in_words user.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

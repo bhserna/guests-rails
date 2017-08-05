@@ -39,14 +39,24 @@ module Users
     User.new(record)
   end
 
+  def self.get_users_list(store)
+    store.all.map { |data| User.new(data) }
+  end
+
   class User
-    attr_reader :id, :email, :first_name
+    attr_reader :id, :email, :first_name, :last_name, :created_at
 
     def initialize(data)
       @id = data[:id]
       @email = data[:email]
       @user_type = data[:user_type]
       @first_name = data[:first_name]
+      @last_name = data[:last_name]
+      @created_at = data[:created_at]
+    end
+
+    def full_name
+      [first_name, last_name].compact.join(" ")
     end
 
     def wedding_planner?

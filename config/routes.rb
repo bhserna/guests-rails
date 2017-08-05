@@ -11,4 +11,7 @@ Rails.application.routes.draw do
       resource :guests_confirmation, only: [:new, :create]
     end
   end
+
+  #admin
+  resources :users, only: :index
 end

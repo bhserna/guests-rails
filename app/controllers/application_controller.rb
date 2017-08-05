@@ -14,6 +14,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def authenticate_admin
+    if !current_user? || current_user.email != "bhserna@gmail.com"
+      redirect_to root_path
+    end
+  end
+
   def current_user?
     @has_current_user ||= Users.user?(session_store: session_store)
   end
