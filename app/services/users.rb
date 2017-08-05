@@ -47,6 +47,21 @@ module Users
     end
   end
 
+  class ErrorStatus
+    def self.success?
+      false
+    end
+
+    def self.error
+      "El email no es válido"
+    end
+  end
+
+
+  def self.send_password_recovery_instructions(params, store)
+    ErrorStatus
+  end
+
   class List
     attr_reader :list_id, :user_id
     def initialize(data)

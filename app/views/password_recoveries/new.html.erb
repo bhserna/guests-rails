@@ -1,0 +1,7 @@
+<%= form_for :password_recovery, url: password_recoveries_path, html: {class: "form"} do |f| %>
+  <h1 class="form-title">Recuperar contraseña</h1>
+  <p class="text-center">Ingresa el email con que te registraste, y te
+  enviaremos un correo con las instrucciones para recuperar la contraseña.</p>
+  <%= form_group f, :email %>
+  <%= f.button "Enviar", class: "btn btn--md btn--blue" %>
+<% end %>
