@@ -1,7 +1,17 @@
 <%= form_for :password_recovery, url: password_recoveries_path, html: {class: "form"} do |f| %>
   <h1 class="form-title">Recuperar contraseña</h1>
-  <p class="text-center">Ingresa el email con que te registraste, y te
-  enviaremos un correo con las instrucciones para recuperar la contraseña.</p>
+
+  <p class="text-center">
+    Ingresa el email con que te registraste, y te enviaremos un correo con las
+    instrucciones para recuperar tu contraseña.
+  </p>
+
+  <% if local_assigns[:error].present? %>
+    <div class="alert alert--error">
+      <%= local_assigns[:error] %>
+    </div>
+  <% end %>
+
   <%= form_group f, :email %>
   <%= f.button "Enviar", class: "btn btn--md btn--blue" %>
 <% end %>
