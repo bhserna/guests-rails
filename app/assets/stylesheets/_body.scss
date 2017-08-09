@@ -6,4 +6,8 @@
   a:not(.btn) {
     color: #3498db;
   }
+
+  input::placeholder {
+    color: #cccccc;
+  }
 }
