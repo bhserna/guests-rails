@@ -1,0 +1,17 @@
+<%= form_for :user, url: password_path(token), html: {class: "form", method: :patch} do |f| %>
+  <h1 class="form-title">Cambiar contraseña</h1>
+
+  <p class="text-center">
+    Hola <%= user.first_name %> llena la forma para actualizar tu contraseña.
+  </p>
+
+  <% if local_assigns[:error].present? %>
+    <div class="alert alert--error">
+      <%= local_assigns[:error] %>
+    </div>
+  <% end %>
+
+  <%= form_group f, :password, label: "Contraseña", field_method: :password_field %>
+  <%= form_group f, :password_confirmation, label: "Confirmación de contraseña", field_method: :password_field %>
+  <%= f.button "Actualizar contraseña", class: "btn btn--md btn--blue" %>
+<% end %>

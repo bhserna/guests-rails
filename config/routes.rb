@@ -11,7 +11,8 @@ Rails.application.routes.draw do
       resource :guests_confirmation, only: [:new, :create]
     end
   end
-
+  resources :password_recoveries, only: [:new, :create]
+  resources :passwords, only: [:edit, :update]
   #admin
   namespace :admin do
     resources :users, only: :index

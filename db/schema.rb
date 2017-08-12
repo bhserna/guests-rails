@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170718233921) do
+ActiveRecord::Schema.define(version: 20170809232006) do
 
   create_table "list_invitation_records", force: :cascade do |t|
     t.string "list_id"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20170718233921) do
     t.string "password_hash"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_recovery_token"
   end
 
 end

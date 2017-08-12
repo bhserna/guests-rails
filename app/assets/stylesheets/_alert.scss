@@ -1,5 +1,6 @@
 $red: #e65d4f;
 $blue: #3498db;
+$green: #1abc9c;
 $gray: gray;
 
 .alert {
@@ -10,11 +11,22 @@ $gray: gray;
 
 }
 
+.alert--contained {
+  max-width: 600px;
+}
+
 .alert--error {
   border-color: $red;
   color: $red;
   border-radius: 3px;
   box-shadow: 5px 5px 0px lighten($red, 20%);
+}
+
+.alert--success {
+  border-color: $green;
+  color: $green;
+  border-radius: 3px;
+  box-shadow: 5px 5px 0px lighten($green, 20%);
 }
 
 .alert--info {
