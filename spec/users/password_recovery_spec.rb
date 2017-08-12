@@ -30,11 +30,18 @@ module Users
         @params = {"email" => "user@example.com"}
       end
 
-      it "returns error if the used does not exist" do
+      it "returns error if the email is not provided" do
+        params = {"email" => ""}
+        status = send_password_recovery_instructions(params)
+        expect(status).not_to be_success
+        expect(status.error).to eq "Por favor ingresa un email"
+      end
+
+      it "returns error if the user does not exist" do
         params = {"email" => "other-user@example.com"}
         status = send_password_recovery_instructions(params)
         expect(status).not_to be_success
-        expect(status.error).to eq "El email no es válido"
+        expect(status.error).to eq "El email no esta registrado"
       end
 
       it "returns success" do

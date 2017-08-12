@@ -11,7 +11,8 @@ class PasswordRecoveriesController < ApplicationController
     )
 
     if status.success?
-      redirect_to new_session_path
+      redirect_to new_session_path,
+        notice: "Se han enviado las instrucciones para recuperar tu contraseña"
     else
       render :new, locals: {error: status.error}
     end
@@ -19,7 +20,7 @@ class PasswordRecoveriesController < ApplicationController
 
   class Mailer
     def self.send_password_recovery_instructions(user_id)
-      UserMailer.password_recovery_instructions(user_id).deliver
+      ApplicationMailer.password_recovery_instructions(user_id).deliver
     end
   end
 

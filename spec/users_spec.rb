@@ -25,5 +25,9 @@ module Users
     def find_by_email(email)
       @records.detect { |r| r[:email] == email }
     end
+
+    def find_by_password_recovery_token(token)
+      @records.detect { |r| r[:password_recovery_token] == token }
+    end
   end
 end

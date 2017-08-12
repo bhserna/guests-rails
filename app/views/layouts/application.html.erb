@@ -33,6 +33,18 @@
       </div>
     </div>
 
+    <% if flash[:alert].present? %>
+      <div class="alert alert--contained alert--error">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
+
+    <% if flash[:notice].present? %>
+      <div class="alert alert--contained alert--info">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
     <%= yield %>
 
     <%= link_to support_page_path, class: "support-btn btn btn--sm btn--blue" do %>

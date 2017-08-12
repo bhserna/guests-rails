@@ -35,6 +35,10 @@ module Users
     build_user(store.find(session_store.user_id))
   end
 
+  def self.get_user(id, store)
+    build_user(store.find(id))
+  end
+
   def self.build_user(record)
     User.new(record)
   end
@@ -48,19 +52,46 @@ module Users
   end
 
   def self.send_password_recovery_instructions(params, mailer, token_generator, store)
-    if record = store.find_by_email(params["email"])
+    email = params["email"]
+
+    if email.blank?
+      return ErrorStatus.new("Por favor ingresa un email")
+    end
+
+    if record = store.find_by_email(email)
       user = User.new(record)
       mailer.send_password_recovery_instructions(user.id)
       token_field = :password_recovery_token
       store.update(user.id, token_field => token_generator.call(user.id, token_field))
       SuccessStatus
     else
-      ErrorStatus.new("El email no es válido")
+      ErrorStatus.new("El email no esta registrado")
     end
   end
 
   def self.get_password_recovery_token(user_id, store)
     store.find(user_id)[:password_recovery_token]
+  end
+
+  def self.find_by_password_recovery_token(token, store)
+    User.new(store.find_by_password_recovery_token(token))
+  end
+
+  def self.update_password(token, params, config)
+    store, encryptor, session_store = config.values_at(:store, :encryptor, :session_store)
+
+    if params["password"].blank?
+      return ErrorStatus.new("La contraseña no puede estar en blanco")
+    end
+
+    if params["password"] != params["password_confirmation"]
+      return ErrorStatus.new("La confirmación no coincide con la contraseña")
+    end
+
+    user = find_by_password_recovery_token(token, store)
+    store.update(user.id, password_hash: encryptor.encrypt(params["password"]))
+    session_store.save_user_id(user.id)
+    SuccessStatus
   end
 
   class List
