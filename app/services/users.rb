@@ -60,9 +60,9 @@ module Users
 
     if record = store.find_by_email(email)
       user = User.new(record)
-      mailer.send_password_recovery_instructions(user.id)
       token_field = :password_recovery_token
       store.update(user.id, token_field => token_generator.call(user.id, token_field))
+      mailer.send_password_recovery_instructions(user.id)
       SuccessStatus
     else
       ErrorStatus.new("El email no esta registrado")
