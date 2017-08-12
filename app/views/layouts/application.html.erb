@@ -21,8 +21,10 @@
       <% end %>
       <div class="top-buttons">
         <% if current_admin? %>
-          <%= link_to "Listas", admin_lists_path, class: "btn btn--sm" %>
-          <%= link_to "Usuarios", admin_users_path, class: "btn btn--sm" %>
+          <% if ENV["ADMIN_ENABLED"] == "true" %>
+            <%= link_to "Listas", admin_lists_path, class: "btn btn--sm" %>
+            <%= link_to "Usuarios", admin_users_path, class: "btn btn--sm" %>
+          <% end %>
         <% end %>
 
         <% if current_user? %>
