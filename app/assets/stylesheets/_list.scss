@@ -62,6 +62,10 @@ $list-grid: (
   margin-top: 0;
 }
 
+.list__invitation-guests {
+  color: #888;
+}
+
 .list__delivered-cell, .list__assistance-cell, .list__actions-cell {
   min-width: 100px;
   text-align: center;

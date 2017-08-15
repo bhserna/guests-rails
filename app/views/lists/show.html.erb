@@ -37,11 +37,9 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>Título</th>
-          <th>Invitados</th>
+          <th>Invitación</th>
           <th>Grupo</th>
-          <th>Email</th>
-          <th>Teléfono</th>
+          <th>Contacto</th>
           <th>¿Entregada?</th>
           <th>Confirmados</th>
           <th>Acciones</th>
@@ -50,14 +48,19 @@
       <tbody>
         <% invitations.each do |invitation| %>
         <tr id="invitation_<%= invitation.id %>">
-          <td><%= invitation.title %></td>
-          <td><%= invitation.guests.split(",").join(", ") %></td>
+          <td>
+            <%= invitation.title %>
+            <small class="list__invitation-guests"><br/><%= invitation.guests.split(",").join(", ") %></small>
+          </td>
           <td>
             <% if invitation.group.present? %>
-              <%= link_to invitation.group, list_path(list.id, group: invitation.group), "data-turbolinks-action" => "replace" %></td>
+              <%= link_to invitation.group, list_path(list.id, group: invitation.group), "data-turbolinks-action" => "replace" %>
             <% end %>
-          <td><%= invitation.email %></td>
-          <td><%= invitation.phone %></td>
+          </td>
+          <td>
+          <%= invitation.email %>
+          <br/><%= invitation.phone %>
+          </td>
           <td class="list__delivered-cell">
             <% if invitation.delivered? %>
               <span>Sí</span>
