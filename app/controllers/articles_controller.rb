@@ -3,6 +3,11 @@ class ArticlesController < ApplicationController
 
   ARTICLES = [{
     id: 1,
+    date: "2017-08-12",
+    slug: "ya-puedes-recuperar-contraseña",
+    title: "Ya puedes recuperar tu contraseñal"
+  }, {
+    id: 2,
     date: "2017-08-15",
     slug: "nuevo-layout-en-tu-lista-de-invitados",
     title: "Nuevo layout en tu lista de invitados"

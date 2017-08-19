@@ -2,26 +2,29 @@
   <h1 class="pitch__title"><%= article[:title] %></h1>
 
   <p>
-  Hoy queremos contarte que hemos modificado un poco la tabla para mostrar
-  las invitaciones.
+  Algunos nos comentaron que no encontraban la opción para recuperar
+  contraseña. Bueno, era porque aún no lo habíamos desarrollado.
   </p>
 
-  <p>Ahora veras que quitamos las columnas de "título" e "invitados" y las
-  cambiamos por una sola columna que dice "invitación". Aquí aparecerán ahora
-  tanto el título de la invitación como los invitados.</p>
+  <p>
+  Pero ya existe!! así que si eres de los/las que olvidan sus contraseñas como
+  nosotros. Pues ya no tendrás ningún problema.
+  </p>
 
-  <p>También las columnas de "email" y "teléfono" pasaron a ser una sola
-  columna que llamada "contacto" y de igual forma aquí apareceran los dos datos, si
-  es que ya fueron ingresados.</p>
+  <h2>¿Como funciona?</h2>
 
+  <p>
+  Si olvidaste tu contraseña solo ve a "Iniciar Sesión" y después da click en
+  "¿Olvidaste tu contraseña?", ingresa tu correo electrónico y recibirás un
+  correo con un link para cambiar tu contraseña.
+  </p>
 
-  <p>Creemos que esto nos ayuda a aprovechar mejor el espacio en la pantalla y
-  a hacer que la información sea más fácil de localizar.</p>
+  <%= article_image(article, "screenshot1.png") %>
+  <%= article_image(article, "screenshot2.png") %>
+  <%= article_image(article, "screenshot3.png") %>
 
-  <p>Esperamos que les sea útil  =)</p>
-
-  <%= article_image(article, "screenshot.png") %>
-
+  <br/>
+  <p>Y es todo por ahora =) ...  esperamos les sea de utilidad!</p>
 
   <h1 class="pitch__title">¿Aún no has creado tu lista?</h1>
 
