@@ -30,8 +30,10 @@
         <% if current_user? %>
           <%= link_to "Mis listas", lists_path, class: "btn btn--sm btn--blue" %>
           <%= button_to "Cerrar sesión", session_path, method: :delete, class: "btn btn--sm" %>
+        <% else %>
+          <%= link_to "Registrarme", new_registration_path, class: "btn btn--sm btn--blue" %>
+          <%= link_to "Iniciar sesión", new_session_path, class: "btn btn--sm btn--blue" %>
         <% end %>
-        <%= yield :top_buttons %>
       </div>
     </div>
 

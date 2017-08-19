@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   end
   resources :password_recoveries, only: [:new, :create]
   resources :passwords, only: [:edit, :update]
+  resources :articles, only: [:show]
+
   #admin
   namespace :admin do
     resources :users, only: :index

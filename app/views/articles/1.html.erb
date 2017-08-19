@@ -1,0 +1,31 @@
+<div class="pitch">
+  <h1 class="pitch__title"><%= article[:title] %></h1>
+
+  <p>
+  Hoy queremos contarte que hemos modificado un poco la tabla para mostrar
+  las invitaciones.
+  </p>
+
+  <p>Ahora veras que quitamos las columnas de "título" e "invitados" y las
+  cambiamos por una sola columna que dice "invitación". Aquí aparecerán ahora
+  tanto el título de la invitación como los invitados.</p>
+
+  <p>También las columnas de "email" y "teléfono" pasaron a ser una sola
+  columna que llamada "contacto" y de igual forma aquí apareceran los dos datos, si
+  es que ya fueron ingresados.</p>
+
+
+  <p>Creemos que esto nos ayuda a aprovechar mejor el espacio en la pantalla y
+  a hacer que la información sea más fácil de localizar.</p>
+
+  <p>Esperamos que les sea útil  =)</p>
+
+  <%= article_image(article, "screenshot.png") %>
+
+
+  <h1 class="pitch__title">¿Aún no has creado tu lista?</h1>
+
+  <div class="pitch__btn-box">
+    <%= link_to "Crear mi lista de invitados", new_registration_path, class: "btn btn--lg btn--blue" %>
+  </div>
+</div>
