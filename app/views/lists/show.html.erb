@@ -59,7 +59,10 @@
           </td>
           <td>
           <%= invitation.email %>
-          <br/><%= invitation.phone %>
+          <% if invitation.email.present? && invitation.phone.present? %>
+            <br/>
+          <% end %>
+          <%= invitation.phone %>
           </td>
           <td class="list__delivered-cell">
             <% if invitation.delivered? %>
