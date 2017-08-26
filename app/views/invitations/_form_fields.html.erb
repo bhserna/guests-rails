@@ -6,10 +6,7 @@
   control_class: "js-selectize--guests",
   control_options: {placeholder: "Ejemplo: Juan, Karla"} %>
 <%= form_group f, :group, label: "Grupo social",
-  field_method: :select,
-  choices: groups,
-  select_options: {include_blank: true},
-  control_class: "js-selectize--group",
-  control_options: {placeholder: "Ejemplo: Familia del novio"} %>
+  control_class: "js-group-autocomplete",
+  control_options: {placeholder: "Ejemplo: Familia del novio", data: {options: groups}} %>
 <%= form_group f, :email, field_method: :email_field, label: "Email de contacto" %>
 <%= form_group f, :phone, field_method: :phone_field, label: "Teléfono de contacto" %>

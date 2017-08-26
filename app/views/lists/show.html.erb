@@ -2,7 +2,7 @@
   <h1 class="list__title"><%= list.name %></h1>
 
   <div class="list__container">
-    <div class="list__form">
+    <div id="list_form" class="list__form">
       <%= form_for invitation_form, as: :invitation, url: list_invitations_path(list.id), method: :post,
         remote: true, html: {class: "form js-invitation-form invitation-form"} do |f| %>
         <h1 class="form-title">Agregar invitación</h1>

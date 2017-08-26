@@ -12,19 +12,23 @@ filterByGroup = (el) ->
 focusInvitationTitle = ->
   $(".js-invitation-form").find("#invitation_title").focus()
 
+initGroupAutocomplete = ->
+  $el = $(".js-group-autocomplete")
+  $(document).on 'turbolinks:before-cache', ->
+    if $el.autocomplete("instance")
+      $el.autocomplete("destroy")
+  $el.focus -> $el.autocomplete("search", "")
+  $el.autocomplete source: $el.data("options"), minLength: 0
+
 init = ->
   focusInvitationTitle()
-
+  initGroupAutocomplete()
   selectize $(".js-selectize--guests"),
     delimiter: ','
     persist: false
     create: (input) ->
       value: input
       text: input
-
-  selectize $(".js-selectize--group"),
-    create: true
-    sortField: 'text'
 
 $(document).on "ready, turbolinks:load", init
 $(document).on "change", ".js-filter-by-group", -> filterByGroup(this)
