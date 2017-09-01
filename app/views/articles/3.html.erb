@@ -1,0 +1,48 @@
+<div class="pitch">
+  <h1 class="pitch__title"><%= article[:title] %></h1>
+
+  <p>
+  Hoy queremos contarte de unos cambios que hicimos a los controles para agregar
+  el grupo social y para filtrar las invitaciones por grupo social.
+  </p>
+
+  <p>
+  Anteriormente usábamos un control "custom" usando la librería <%= link_to "Selectize.js", "http://selectize.github.io/selectize.js/" %>,
+  y aunque creemos que es una buena librería, vimos que al no ser un control estándar, algunas
+  personas tardaban un poco en descifrar como funcionaba.
+  </p>
+
+  <%= article_image(article, "old-control.png") %>
+
+  <p>
+  Por lo que decidimos buscar hacer estas dos funciones con controles estándar, para
+  que hacer más intuitivo el uso del software.
+  </p>
+
+  <h2>Control para agregar el grupo social</h2>
+
+  <p>Ahora el control para agregar el grupo social es solo un campo de texto,
+  que con ayuda de un "autocomplete" permite poder seleccionar los grupos que
+  haz agregado anteriormente. Así se ve ahora:</p>
+
+  <%= article_image(article, "add-group-control.png") %>
+
+  <h2>Control para filtrar por grupo social</h2>
+
+  <p>Para esta acción nos dimos cuenta que no necesitábamos más que un campo
+  tipo "select" que implementan todos los navegadores por default. Lo que hace mucho
+  más fácil poder descifrar su función.</p>
+
+  <%= article_image(article, "filter-by-group-control.png") %>
+
+  <h2>Conclusión</h2>
+
+  <p>Esperamos que estos cambios puedan ayudarte a entender más rápidamente
+  como usar el software, para que sea más fácil crear tu lista de invitados.</p>
+
+  <h1 class="pitch__title">¿Aún no has creado tu lista?</h1>
+
+  <div class="pitch__btn-box">
+    <%= link_to "Crear mi lista de invitados", new_registration_path, class: "btn btn--lg btn--blue" %>
+  </div>
+</div>

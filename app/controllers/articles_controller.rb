@@ -11,6 +11,11 @@ class ArticlesController < ApplicationController
     date: "2017-08-15",
     slug: "nuevo-layout-en-tu-lista-de-invitados",
     title: "Nuevo layout en tu lista de invitados"
+  }, {
+    id: 3,
+    date: "2017-01-01",
+    slug: "controles-más-simples-para-que-sea-más-fácil-crear-tu-lista-de-invitados",
+    title: "Controles más simples para que sea más fácil crear tu lista de invitados"
   }]
 
   def show
