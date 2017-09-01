@@ -3,7 +3,7 @@
 
   <div class="list__container">
     <div id="list_form" class="list__form">
-      <%= form_for invitation_form, as: :invitation, url: list_invitations_path(list.id), method: :post,
+      <%= form_for invitation_form, as: :invitation, url: list_invitations_path(list.id, group: params[:group]), method: :post,
         remote: true, html: {class: "form js-invitation-form invitation-form"} do |f| %>
         <h1 class="form-title">Agregar invitación</h1>
         <%= render "invitations/form_fields", f: f, groups: groups %>
@@ -22,8 +22,7 @@
       </div>
 
       <div class="list__filter">
-        <%= form_for :invitation, url: list_invitations_path(list.id), method: :post,
-          remote: true, html: {class: "form invitation-form"} do |f| %>
+        <%= form_for :invitation, url: list_invitations_path(list.id), html: {class: "form"} do |f| %>
           <% if params[:group].present? %>
             <%= link_to "Remover filtro", list_path(list.id), class: "list__filter-remover", "data-turbolinks-action" => "replace" %>
           <% end %>
@@ -68,11 +67,11 @@
             <td class="list__delivered-cell">
               <% if invitation.delivered? %>
                 <span>Sí</span>
-                <%= button_to list_invitation_delivery_mark_path(list.id, invitation.id), method: :delete, remote: true, class: "btn" do %>
+                <%= button_to list_invitation_delivery_mark_path(list.id, invitation.id, group: params[:group]), method: :delete, remote: true, class: "btn btn--sm" do %>
                   <span class="fa fa-undo"></span>
                 <% end %>
               <% else %>
-                <%= button_to list_invitation_delivery_mark_path(list.id, invitation.id), remote: true, class: "btn" do %>
+                <%= button_to list_invitation_delivery_mark_path(list.id, invitation.id, group: params[:group]), remote: true, class: "btn btn--sm" do %>
                   <span>Confirmar</span>
                   <span>Entrega</span>
                 <% end %>
@@ -81,21 +80,21 @@
             <td class="list__assistance-cell">
               <% if invitation.has_assistance_confirmed? %>
                 <span><%= invitation.confirmed_guests_count %></span>
-                <%= button_to new_list_invitation_guests_confirmation_path(list.id, invitation.id), method: :get, class: "btn" do %>
+                <%= link_to new_list_invitation_guests_confirmation_path(list.id, invitation.id, group: params[:group]), class: "btn btn--sm" do %>
                   <span class="fa fa-pencil"></span>
                 <% end %>
               <% else %>
-                <%= button_to new_list_invitation_guests_confirmation_path(list.id, invitation.id), method: :get, class: "btn" do %>
+                <%= link_to new_list_invitation_guests_confirmation_path(list.id, invitation.id, group: params[:group]), class: "btn btn--sm" do %>
                   <span>Confirmar</span>
                   <span>Asistencia</span>
                 <% end %>
               <% end %>
             </td>
             <td class="list__actions-cell">
-              <%= button_to edit_list_invitation_path(list.id, invitation.id), method: :get, class: "btn" do %>
+              <%= link_to edit_list_invitation_path(list.id, invitation.id, group: params[:group]), class: "btn btn--sm" do %>
                 <span class="fa fa-pencil"></span>
               <% end %>
-              <%= button_to list_invitation_path(list.id, invitation.id), method: :delete, class: "btn", remote: true do %>
+              <%= button_to list_invitation_path(list.id, invitation.id, group: params[:group]), method: :delete, class: "btn btn--sm", remote: true do %>
                 <span class="fa fa-trash"></span>
               <% end %>
             </td>
