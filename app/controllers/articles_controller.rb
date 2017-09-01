@@ -20,7 +20,7 @@ class ArticlesController < ApplicationController
 
   def show
     article = ARTICLES.detect{|a| a[:slug] == params[:id]}
-    render file: "articles/#{article[:id]}", locals: {article: article}
+    render locals: {article: article}
   end
 
   private

@@ -1,34 +1,24 @@
-<div class="pitch">
-  <h1 class="pitch__title"><%= article[:title] %></h1>
+<p>
+Algunos nos comentaron que no encontraban la opción para recuperar
+contraseña. Bueno, era porque aún no lo habíamos desarrollado.
+</p>
 
-  <p>
-  Algunos nos comentaron que no encontraban la opción para recuperar
-  contraseña. Bueno, era porque aún no lo habíamos desarrollado.
-  </p>
+<p>
+Pero ya existe!! así que si eres de los/las que olvidan sus contraseñas como
+nosotros. Pues ya no tendrás ningún problema.
+</p>
 
-  <p>
-  Pero ya existe!! así que si eres de los/las que olvidan sus contraseñas como
-  nosotros. Pues ya no tendrás ningún problema.
-  </p>
+<h2>¿Como funciona?</h2>
 
-  <h2>¿Como funciona?</h2>
+<p>
+Si olvidaste tu contraseña solo ve a "Iniciar Sesión" y después da click en
+"¿Olvidaste tu contraseña?", ingresa tu correo electrónico y recibirás un
+correo con un link para cambiar tu contraseña.
+</p>
 
-  <p>
-  Si olvidaste tu contraseña solo ve a "Iniciar Sesión" y después da click en
-  "¿Olvidaste tu contraseña?", ingresa tu correo electrónico y recibirás un
-  correo con un link para cambiar tu contraseña.
-  </p>
+<%= article_image(article, "screenshot1.png") %>
+<%= article_image(article, "screenshot2.png") %>
+<%= article_image(article, "screenshot3.png") %>
 
-  <%= article_image(article, "screenshot1.png") %>
-  <%= article_image(article, "screenshot2.png") %>
-  <%= article_image(article, "screenshot3.png") %>
-
-  <br/>
-  <p>Y es todo por ahora =) ...  esperamos les sea de utilidad!</p>
-
-  <h1 class="pitch__title">¿Aún no has creado tu lista?</h1>
-
-  <div class="pitch__btn-box">
-    <%= link_to "Crear mi lista de invitados", new_registration_path, class: "btn btn--lg btn--blue" %>
-  </div>
-</div>
+<br/>
+<p>Y es todo por ahora =) ...  esperamos les sea de utilidad!</p>
