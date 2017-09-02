@@ -25,7 +25,7 @@ module Lists
 
       if errors.empty?
         people_store.create(person.to_h)
-        Success
+        SuccessResponse
       else
         form = GiveAccessForm.new(person)
         form.add_errors(errors)
@@ -43,7 +43,7 @@ module Lists
 
       if errors.empty?
         people_store.update(person.id, person.to_h)
-        Success
+        SuccessResponse
       else
         form = GiveAccessForm.new(person)
         form.add_errors(errors)

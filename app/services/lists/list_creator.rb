@@ -13,7 +13,7 @@ module Lists
           list_id: id_generator.generate_id,
           user_id: user_id,
           name: data["name"])
-        Success
+        SuccessResponse
       else
         form.add_errors(errors)
         ErrorWithForm.new(form)
