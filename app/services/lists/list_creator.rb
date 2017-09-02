@@ -20,11 +20,28 @@ module Lists
       end
     end
 
+    def self.edit_list_name_form(list_id, store)
+      Form.new(store.find_by_list_id(list_id))
+    end
+
+    def self.update_list_name(list_id, data, store)
+      form = Form.new(data)
+      errors = Validator.validate(form)
+
+      if errors.empty?
+        store.update_list(list_id, name: form.name)
+        SuccessResponse
+      else
+        form.add_errors(errors)
+        ErrorWithForm.new(form)
+      end
+    end
+
     class Form
       attr_reader :name, :errors
 
       def initialize(data = {})
-        @name = data["name"]
+        @name = data["name"] || data[:name]
         @errors = {}
       end
 

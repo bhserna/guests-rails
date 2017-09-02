@@ -12,6 +12,14 @@ module Lists
     ListCreator.create_list(*args)
   end
 
+  def self.edit_list_name_form(list_id, store)
+    ListCreator.edit_list_name_form(list_id, store)
+  end
+
+  def self.update_list_name(list_id, data, store)
+    ListCreator.update_list_name(list_id, data, store)
+  end
+
   def self.lists_of_user(user, lists_store, people_store)
     records = lists_store.find_all_by_user_id(user.id)
     list_ids = people_store.find_ids_of_lists_with_access_for_email(user.email)
