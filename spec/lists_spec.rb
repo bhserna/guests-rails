@@ -2,11 +2,11 @@ require_relative "../app/services/lists"
 
 module Lists
   class FakeListsStore
-    def initialize(records)
+    def initialize(records = {})
       @records = records
     end
 
-    def update(id, attrs)
+    def update_list(id, attrs)
     end
 
     def all

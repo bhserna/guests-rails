@@ -1,45 +1,23 @@
 require_relative "validations"
 require_relative "lists/invitation"
+require_relative "lists/list_creator"
+require_relative "lists/access_control"
 
 module Lists
-  class ErrorWithForm
-    attr_reader :form
-
-    def initialize(form)
-      @form = form
-    end
-
-    def success?
-      false
-    end
-  end
-
-  class Success
-    def self.success?
-      true
-    end
-  end
-
-  class List
-    attr_reader :id, :name, :user_id, :created_at
-
-    def initialize(data)
-      @id = data[:list_id]
-      @name = data[:name]
-      @user_id = data[:user_id]
-      @created_at = data[:created_at]
-    end
-  end
-
-  require_relative "lists/list_creator"
-  require_relative "lists/access_control"
-
   def self.new_list_form
     ListCreator.new_list_form
   end
 
   def self.create_list(*args)
     ListCreator.create_list(*args)
+  end
+
+  def self.edit_list_name_form(list_id, store)
+    ListCreator.edit_list_name_form(list_id, store)
+  end
+
+  def self.update_list_name(list_id, data, store)
+    ListCreator.update_list_name(list_id, data, store)
   end
 
   def self.lists_of_user(user, lists_store, people_store)
@@ -98,7 +76,7 @@ module Lists
   def self.add_invitation(list_id, params, store)
     invitation = Invitation.new(params)
     form = InvitationForm.new(invitation)
-    errors = Validator.validate(form)
+    errors = InvitationValidator.validate(form)
 
     if errors.empty?
       store.create(invitation.creation_data.merge(list_id: list_id))
@@ -117,7 +95,7 @@ module Lists
   def self.update_invitation(id, params, store)
     invitation = Invitation.new(params)
     form = InvitationForm.new(invitation)
-    errors = Validator.validate(form)
+    errors = InvitationValidator.validate(form)
 
     if errors.empty?
       store.update(id, invitation.creation_data)
@@ -168,6 +146,17 @@ module Lists
     store.find_all_groups_by_list_id(list_id).reject(&:blank?)
   end
 
+  class List
+    attr_reader :id, :name, :user_id, :created_at
+
+    def initialize(data)
+      @id = data[:list_id]
+      @name = data[:name]
+      @user_id = data[:user_id]
+      @created_at = data[:created_at]
+    end
+  end
+
   class User
     attr_reader :id, :first_name, :last_name
 
@@ -206,6 +195,18 @@ module Lists
     end
   end
 
+  class ErrorWithForm
+    attr_reader :form
+
+    def initialize(form)
+      @form = form
+    end
+
+    def success?
+      false
+    end
+  end
+
   class SuccessResponse
     def self.success?
       true
@@ -231,7 +232,7 @@ module Lists
     end
   end
 
-  class Validator
+  class InvitationValidator
     extend Validations
 
     def self.validate(form)

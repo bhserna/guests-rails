@@ -1,5 +1,10 @@
 <div class="list">
-  <h1 class="list__title"><%= list.name %></h1>
+  <h1 class="list__title">
+    <%= list.name %>
+    <%= link_to edit_list_name_path(list.id, group: params[:group]), class: "btn btn--sm" do %>
+      <span class="fa fa-pencil"></span>
+    <% end %>
+  </h1>
 
   <div class="list__container">
     <div id="list_form" class="list__form">

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get :support
   end
   resources :lists, only: [:new, :create, :index, :show] do
+    resource :name, only: [:edit, :update], controller: :list_names
     resources :invitations, only: [:create, :edit, :update, :destroy] do
       resource :delivery_mark, only: [:create, :destroy]
       resource :guests_confirmation, only: [:new, :create]
