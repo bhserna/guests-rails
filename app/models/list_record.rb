@@ -3,6 +3,10 @@ class ListRecord < ApplicationRecord
     create(attrs)
   end
 
+  def self.update_list(list_id, attrs)
+    find_by(list_id: list_id).update(attrs)
+  end
+
   def self.find_all_by_user_id(user_id)
     where(user_id: user_id)
   end

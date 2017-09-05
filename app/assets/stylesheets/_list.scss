@@ -16,6 +16,10 @@ $list-grid: (
   text-align: left;
   line-height: .2em;
   margin: 1em 0.5em 2em;
+
+  .btn {
+    font-size: 11px;
+  }
 }
 
 .list__form {
