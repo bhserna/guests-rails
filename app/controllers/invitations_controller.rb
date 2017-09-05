@@ -3,7 +3,7 @@ class InvitationsController < ApplicationController
     status = Lists.add_invitation(list_id, params.require(:invitation), ListInvitationRecord)
 
     if status.success?
-      redirect_to list_path(list_id)
+      redirect_to list_path(list_id, group: params[:group])
     else
       render status: 422, locals: {
         list: Lists.get_list(list_id, ListRecord),
@@ -28,7 +28,7 @@ class InvitationsController < ApplicationController
     status = Lists.update_invitation(invitation_id, params.require(:invitation), ListInvitationRecord)
 
     if status.success?
-      redirect_to list_path(list_id)
+      redirect_to list_path(list_id, group: params[:group])
     else
       render :edit, locals: {
         form: status.form,
@@ -41,7 +41,7 @@ class InvitationsController < ApplicationController
 
   def destroy
     Lists.delete_invitation(invitation_id, ListInvitationRecord)
-    redirect_to list_path(list_id)
+    redirect_to list_path(list_id, group: params[:group])
   end
 
   private

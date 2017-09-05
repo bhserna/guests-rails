@@ -6,7 +6,7 @@ class GuestsConfirmationsController < ApplicationController
 
   def create
     Lists.confirm_invitation_guests(invitation_id, count_param, ListInvitationRecord)
-    redirect_to list_path(list_id)
+    redirect_to list_path(list_id, group: params[:group])
   end
 
   private
