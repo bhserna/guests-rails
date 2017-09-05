@@ -12,7 +12,7 @@ class ListNamesController < ApplicationController
     if status.success?
       redirect_to list_path(list_id, group: params[:group])
     else
-      render :edit, locals: {form: form, list_id: list_id}
+      render :edit, locals: {form: status.form, list_id: list_id}
     end
   end
 
