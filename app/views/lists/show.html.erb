@@ -1,4 +1,13 @@
 <div class="list">
+  <div class="list__stats alert alert--default">
+    Invitaciones entregadas: <%= invitations.count(&:delivered?) %> de <%= invitations.count %>
+  </div>
+
+  <div class="list__stats alert alert--default">
+    Invitados confirmados: <%= invitations.map(&:confirmed_guests_count).compact.reduce(0, :+) %>
+    de <%= invitations.map { |invitation| invitation.guests.split(",").count }.reduce(0, :+) %>
+  </div>
+
   <h1 class="list__title">
     <%= list.name %>
     <%= link_to edit_list_name_path(list.id, group: params[:group]), class: "btn btn--sm" do %>
@@ -17,15 +26,6 @@
     </div>
 
     <div class="list__table">
-      <div class="list__stats alert alert--default">
-        Invitaciones entregadas: <%= invitations.count(&:delivered?) %> de <%= invitations.count %>
-      </div>
-
-      <div class="list__stats alert alert--default">
-        Invitados confirmados: <%= invitations.map(&:confirmed_guests_count).compact.reduce(0, :+) %>
-        de <%= invitations.map { |invitation| invitation.guests.split(",").count }.reduce(0, :+) %>
-      </div>
-
       <div class="list__filter">
         <%= form_for :invitation, url: list_invitations_path(list.id), html: {class: "form"} do |f| %>
           <% if params[:group].present? %>
