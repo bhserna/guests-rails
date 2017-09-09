@@ -41,7 +41,7 @@
   flex-basis: 100%;
 
   .table {
-    min-width: 900px;
+    min-width: 1070px;
     font-size: 0.9em;
     margin: 0;
     margin-bottom: 5em;
@@ -49,15 +49,30 @@
   }
 }
 
-.list__filter {
+.list__filter, .list__search {
   display: inline-block;
   float: right;
   position: relative;
   top: -27px;
+  margin-left: 1em;
 
   .form {
     width: 250px;
   }
+}
+
+.list__search {
+  position: relative;
+
+  .form {
+    width: 230px;
+  }
+}
+
+.list__search-spinner {
+  position: absolute;
+  top: 2px;
+  right: 2px;
 }
 
 .list__filter-remover {
@@ -65,10 +80,15 @@
   font-size: 80%;
 }
 
+.list__stats-container {
+  display: inline-block;
+}
+
 .list__stats {
-  margin: 0;
-  margin-left: 1.5em;
-  float: right;
+  font-size: 0.9em;
+  display: inline-block;
+  margin: 0 1em 2.5em;
+  margin-top: 0;
 }
 
 .list__invitation-guests {

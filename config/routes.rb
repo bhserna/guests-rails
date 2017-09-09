@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get :support
   end
   resources :lists, only: [:new, :create, :index, :show] do
+    get :search, on: :member
     resource :name, only: [:edit, :update], controller: :list_names
     resources :invitations, only: [:create, :edit, :update, :destroy] do
       resource :delivery_mark, only: [:create, :destroy]
