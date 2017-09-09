@@ -69,5 +69,56 @@ module Lists
       expect(second.id).to eq 2
       expect(second.guests).to eq "Gus, Caro"
     end
+
+    describe "filter with search" do
+      example do
+        invitations = Lists.get_invitations(list_id, store, search: "uno")
+        expect(invitations.count).to eq 1
+        expect(invitations.first.id).to eq 1
+        expect(invitations.first.title).to eq "Uno"
+      end
+
+      example do
+        invitations = Lists.get_invitations(list_id, store, search: "dos")
+        expect(invitations.count).to eq 1
+        expect(invitations.first.id).to eq 2
+        expect(invitations.first.title).to eq "Dos"
+      end
+
+      example do
+        invitations = Lists.get_invitations(list_id, store, search: "caro")
+        expect(invitations.count).to eq 1
+        expect(invitations.first.id).to eq 2
+        expect(invitations.first.title).to eq "Dos"
+      end
+
+      example do
+        invitations = Lists.get_invitations(list_id, store, search: "nito")
+        expect(invitations.count).to eq 1
+        expect(invitations.first.id).to eq 1
+        expect(invitations.first.title).to eq "Uno"
+      end
+
+      example do
+        invitations = Lists.get_invitations(list_id, store, search: "bh@exam")
+        expect(invitations.count).to eq 1
+        expect(invitations.first.id).to eq 1
+        expect(invitations.first.title).to eq "Uno"
+      end
+    end
+
+    describe "filter by group and search" do
+      example do
+        invitations = Lists.get_invitations(list_id, store, group: "escuela", search: "caro")
+        expect(invitations.count).to eq 1
+        expect(invitations.first.id).to eq 2
+        expect(invitations.first.guests).to eq "Gus, Caro"
+      end
+
+      example do
+        invitations = Lists.get_invitations(list_id, store, group: "escuela", search: "uno")
+        expect(invitations.count).to eq 0
+      end
+    end
   end
 end

@@ -40,6 +40,12 @@ module Lists
       guests.split(",").count
     end
 
+    def match_search?(search)
+      [:title, :guests, :email].any? do |attr|
+        send(attr).downcase.include?(search)
+      end
+    end
+
     private
 
     def get_value(data, key)

@@ -9,6 +9,22 @@ filterByGroup = (el) ->
   path = "#{location.pathname}?group=#{el.value}"
   Turbolinks.visit(path, action: "replace")
 
+currentGroup = ->
+  $("#invitation_group").val()
+
+replaceContentOf = (id, html) ->
+  $(id).replaceWith($(html).find(id))
+
+search = (el) ->
+  path = "#{location.pathname}?search=#{el.value}&group=#{currentGroup()}"
+  $spinner = $("<i class='list__search-spinner fa fa-spinner fa-spin'></i>")
+  $(el).siblings(".list__search-spinner").remove()
+  $(el).before($spinner)
+  $.get path, (html)->
+    replaceContentOf("#list_table", html)
+    replaceContentOf("#list_stats", html)
+    $spinner.remove()
+
 focusInvitationTitle = ->
   $(".js-invitation-form").find("#invitation_title").focus()
 
@@ -32,3 +48,5 @@ init = ->
 
 $(document).on "ready, turbolinks:load", init
 $(document).on "change", ".js-filter-by-group", -> filterByGroup(this)
+$(document).on "input", ".js-search", $.debounce(200, -> search(this))
+$(document).on "submit", ".js-search-form", (e) -> e.preventDefault()

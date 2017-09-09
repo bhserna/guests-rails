@@ -17,13 +17,15 @@
     </div>
 
     <div class="list__table">
-      <div class="list__stats alert alert--default">
-        Invitaciones entregadas: <%= invitations.count(&:delivered?) %> de <%= invitations.count %>
-      </div>
+      <div id="list_stats" class="list__stats-container">
+        <div class="list__stats alert alert--default">
+          Invitaciones entregadas: <%= invitations.count(&:delivered?) %> de <%= invitations.count %>
+        </div>
 
-      <div class="list__stats alert alert--default">
-        Invitados confirmados: <%= invitations.map(&:confirmed_guests_count).compact.reduce(0, :+) %>
-        de <%= invitations.map { |invitation| invitation.guests.split(",").count }.reduce(0, :+) %>
+        <div class="list__stats alert alert--default">
+          Invitados confirmados: <%= invitations.map(&:confirmed_guests_count).compact.reduce(0, :+) %>
+          de <%= invitations.map { |invitation| invitation.guests.split(",").count }.reduce(0, :+) %>
+        </div>
       </div>
 
       <div class="list__filter">
@@ -39,7 +41,16 @@
         <% end %>
       </div>
 
-      <table class="table table-striped">
+      <div class="list__search">
+        <%= form_for :invitation, url: search_list_path(list.id, group: params[:group]), method: :get,  html: {class: "form js-search-form"} do |f| %>
+          <%= form_group f, :search,
+            label: "Buscar",
+            control_options: {value: params[:search]},
+            control_class: "js-search" %>
+        <% end %>
+      </div>
+
+      <table id="list_table" class="table table-striped">
         <thead>
           <tr>
             <th>Invitación</th>
