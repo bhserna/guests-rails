@@ -42,7 +42,7 @@ module Lists
 
     def match_search?(search)
       [:title, :guests, :email].any? do |attr|
-        send(attr).downcase.include?(search)
+        send(attr).downcase.include?(search.downcase)
       end
     end
 

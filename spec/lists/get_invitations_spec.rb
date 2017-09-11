@@ -93,7 +93,7 @@ module Lists
       end
 
       example do
-        invitations = Lists.get_invitations(list_id, store, search: "nito")
+        invitations = Lists.get_invitations(list_id, store, search: "Nito")
         expect(invitations.count).to eq 1
         expect(invitations.first.id).to eq 1
         expect(invitations.first.title).to eq "Uno"
