@@ -24,8 +24,8 @@ class ArticlesController < ApplicationController
   }, {
     id: 5,
     date: "2017-01-12",
-    slug: "busqueda-dentro-de-tu-lista-de-invitados",
-    title: "Busqueda dentro de tu lista de invitados"
+    slug: "búsqueda-dentro-de-tu-lista-de-invitados",
+    title: "Búsqueda dentro de tu lista de invitados"
   }]
 
   def show
