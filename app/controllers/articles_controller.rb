@@ -21,6 +21,11 @@ class ArticlesController < ApplicationController
     date: "2017-01-02",
     slug: "mantener-selección-del-grupo-al-agregar-o-realizar-acciones-en-tu-lista-de-invitados",
     title: "Mantener selección del grupo al agregar o realizar acciones en tu lista de invitados"
+  }, {
+    id: 5,
+    date: "2017-01-12",
+    slug: "busqueda-dentro-de-tu-lista-de-invitados",
+    title: "Busqueda dentro de tu lista de invitados"
   }]
 
   def show
