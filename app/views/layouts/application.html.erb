@@ -4,6 +4,7 @@
   <head>
     <title>Simple Guest List | <%= content_for(:title) || default_title %></title>
     <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.default.min.css" />
@@ -22,7 +23,10 @@
       <%= link_to root_path, class: "logo" do %>
         <span>Simple Guest List</span>
       <% end %>
-      <div class="top-buttons">
+      <a href="#" class="bar__menu-control js-bar-menu-control">
+        <span class="fa fa-bars" aria-hidden="true"></span>
+      </a>
+      <div class="bar__buttons">
         <% if current_admin? %>
           <% if ENV["ADMIN_ENABLED"] == "true" %>
             <%= link_to "Listas", admin_lists_path, class: "btn btn--sm" %>
