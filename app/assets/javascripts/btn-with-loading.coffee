@@ -1,5 +1,4 @@
-defaultSelectors = ".js-btn-with-loading"
-submitSelector = "form.js-btn-with-loading"
+defaultSelectors = ".btn"
 timeToEventBubble = 5
 defaultLoadingText = "Cargando..."
 spinnerHtml = "<i class='fa fa-spinner fa-spin'></i>"
@@ -37,7 +36,6 @@ updateContent = (btn, text) ->
     btn.html(text || spinnerHtml)
 
 $(document).on "click", defaultSelectors, handleClickEvent
-$(document).on "submit", submitSelector, handleSubmitEvent
 $(document).on "ajax:success", defaultSelectors, handleAjaxSuccess
 $(document).on 'turbolinks:before-cache', ->
   $(defaultSelectors).each ->
