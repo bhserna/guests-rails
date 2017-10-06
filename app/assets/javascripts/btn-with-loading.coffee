@@ -1,4 +1,4 @@
-defaultSelectors = ".btn"
+defaultSelectors = ".js-btn-with-loading"
 timeToEventBubble = 5
 defaultLoadingText = "Cargando..."
 spinnerHtml = "<i class='fa fa-spinner fa-spin'></i>"
