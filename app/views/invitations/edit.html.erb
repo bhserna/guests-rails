@@ -1,5 +1,5 @@
 <%= form_for form, as: :invitation, url: list_invitation_path(list_id, invitation_id, group: params[:group]),
-   method: :patch, html: {class: "form js-invitation-form invitation-form"} do |f| %>
+   method: :patch, html: {class: "form js-invitation-form"} do |f| %>
     <h1 class="form-title">Editar invitación</h1>
     <%= render "form_fields", f: f, groups: groups %>
     <%= f.button "Actualizar", class: "btn btn--md btn--blue" %>

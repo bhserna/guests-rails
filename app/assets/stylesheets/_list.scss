@@ -140,6 +140,14 @@
 
   form {
     display: inline-block;
-    margin-left: 5px;
+  }
+}
+
+.list__add-invitation-btn {
+  bottom: 1em;
+
+  @media (min-width: 768px) {
+    bottom: 0;
+    display: none;
   }
 }
