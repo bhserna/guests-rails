@@ -1,4 +1,12 @@
 class InvitationsController < ApplicationController
+  def new
+    render locals: {
+      list_id: list_id,
+      groups: Lists.get_list_groups(list_id, ListInvitationRecord),
+      invitation_form: Lists.get_invitation_form
+    }
+  end
+
   def create
     status = Lists.add_invitation(list_id, params.require(:invitation), ListInvitationRecord)
 
@@ -6,9 +14,8 @@ class InvitationsController < ApplicationController
       redirect_to list_path(list_id, group: params[:group])
     else
       render status: 422, locals: {
-        list: Lists.get_list(list_id, ListRecord),
+        list_id: list_id,
         groups: Lists.get_list_groups(list_id, ListInvitationRecord),
-        invitations: Lists.get_invitations(list_id, ListInvitationRecord, group: params[:group]),
         invitation_form: status.form
       }
     end

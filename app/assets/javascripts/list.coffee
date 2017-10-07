@@ -50,3 +50,5 @@ $(document).on "ready, turbolinks:load", init
 $(document).on "change", ".js-filter-by-group", -> filterByGroup(this)
 $(document).on "input", ".js-search", $.debounce(200, -> search(this))
 $(document).on "submit", ".js-search-form", (e) -> e.preventDefault()
+
+window.List = {init}

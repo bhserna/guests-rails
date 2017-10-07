@@ -3,3 +3,40 @@
 .bar {
   @extend %clearfix;
 }
+
+.bar__buttons {
+  text-align: right;
+  font-size: 0.9em;
+
+  @media (min-width: 768px) {
+    float: right;
+    display: inline-block;
+  }
+
+  .btn, form {
+    display: none;
+
+    @media (min-width: 768px) {
+      display: inline-block;
+    }
+  }
+}
+
+.bar__buttons--shown {
+  padding-top: 3em;
+
+  .btn, form {
+    display: inline-block;
+  }
+}
+
+.bar .bar__menu-control {
+  text-decoration: none;
+  display: block;
+  padding: 6px 12px;
+  float: right;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}

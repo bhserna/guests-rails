@@ -1,8 +1,7 @@
-$(".list").replaceWith("<%= j render(file: "lists/show", locals: {
-  list: list,
+$("#new_invitation").replaceWith("<%= j render(file: "invitations/new", locals: {
+  list_id: list_id,
   groups: groups,
-  invitations: invitations,
   invitation_form: invitation_form
 }) %>");
 
-Selectize.init()
+List.init()
