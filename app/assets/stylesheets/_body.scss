@@ -14,10 +14,8 @@
 
 
   h1 {
-    font-size: 1.4em;
-
-    @media (min-width: 768px) {
-      font-size: auto;
+    @media (max-width: 768px) {
+      font-size: 1.4em;
     }
   }
 }
