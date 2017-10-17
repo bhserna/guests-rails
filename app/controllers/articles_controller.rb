@@ -13,19 +13,24 @@ class ArticlesController < ApplicationController
     title: "Nuevo layout en tu lista de invitados"
   }, {
     id: 3,
-    date: "2017-01-01",
+    date: "2017-09-01",
     slug: "controles-más-simples-para-que-sea-más-fácil-crear-tu-lista-de-invitados",
     title: "Controles más simples para que sea más fácil crear tu lista de invitados"
   }, {
     id: 4,
-    date: "2017-01-02",
+    date: "2017-09-02",
     slug: "mantener-selección-del-grupo-al-agregar-o-realizar-acciones-en-tu-lista-de-invitados",
     title: "Mantener selección del grupo al agregar o realizar acciones en tu lista de invitados"
   }, {
     id: 5,
-    date: "2017-01-12",
+    date: "2017-09-12",
     slug: "búsqueda-dentro-de-tu-lista-de-invitados",
     title: "Búsqueda dentro de tu lista de invitados"
+  }, {
+    id: 6,
+    date: "2017-10-16",
+    slug: "ahora-puedes-crear-tu-lista-de-invitados-desde-tu-celular",
+    title: "Ahora puedes crear tu lista de invitados desde tu celular"
   }]
 
   def show
