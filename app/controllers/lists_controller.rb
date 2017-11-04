@@ -1,4 +1,5 @@
 class ListsController < ApplicationController
+  include ListRenderer
   before_action :authenticate_user
 
   def new
@@ -23,12 +24,7 @@ class ListsController < ApplicationController
   end
 
   def show
-    render locals: {
-      list: Lists.get_list(list_id, ListRecord),
-      groups: Lists.get_list_groups(list_id, ListInvitationRecord),
-      invitations: Lists.get_invitations(list_id, ListInvitationRecord, search: params[:search], group: params[:group]),
-      invitation_form: Lists.get_invitation_form
-    }
+    render_list(list_id)
   end
 
   private

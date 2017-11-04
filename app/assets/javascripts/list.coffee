@@ -36,8 +36,8 @@ initGroupAutocomplete = ->
   $el.focus -> $el.autocomplete("search", "")
   $el.autocomplete source: $el.data("options"), minLength: 0
 
-init = ->
-  focusInvitationTitle()
+init = (opts = {}) ->
+  focusInvitationTitle() if opts.focusInvitationTitle
   initGroupAutocomplete()
   selectize $(".js-selectize--guests"),
     delimiter: ','
@@ -46,7 +46,7 @@ init = ->
       value: input
       text: input
 
-$(document).on "ready, turbolinks:load", init
+$(document).on "ready, turbolinks:load", -> init()
 $(document).on "change", ".js-filter-by-group", -> filterByGroup(this)
 $(document).on "input", ".js-search", $.debounce(200, -> search(this))
 $(document).on "submit", ".js-search-form", (e) -> e.preventDefault()

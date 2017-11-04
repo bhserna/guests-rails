@@ -1,4 +1,6 @@
 class InvitationsController < ApplicationController
+  include ListRenderer
+
   def new
     render locals: {
       list_id: list_id,
@@ -11,7 +13,7 @@ class InvitationsController < ApplicationController
     status = Lists.add_invitation(list_id, params.require(:invitation), ListInvitationRecord)
 
     if status.success?
-      redirect_to list_path(list_id, group: params[:group])
+      update_list(list_id, focus_invitation_title: true)
     else
       render status: 422, locals: {
         list_id: list_id,
@@ -48,7 +50,7 @@ class InvitationsController < ApplicationController
 
   def destroy
     Lists.delete_invitation(invitation_id, ListInvitationRecord)
-    redirect_to list_path(list_id, group: params[:group])
+    update_list(list_id)
   end
 
   private

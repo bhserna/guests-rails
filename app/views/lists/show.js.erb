@@ -1,0 +1,13 @@
+if ($("#list").length) {
+  $("#list").replaceWith("<%= j render(file: "lists/show.html", locals: {
+    list: list,
+    groups: groups,
+    invitations: invitations,
+    invitation_form: invitation_form
+  }) %>");
+
+  List.init({focusInvitationTitle: <%= focus_invitation_title %>});
+} else {
+  Turbolinks.visit("<%= list_path(list.id) %>");
+}
+
