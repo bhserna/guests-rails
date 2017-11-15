@@ -19,7 +19,7 @@ class ListsController < ApplicationController
   end
 
   def index
-    lists = Lists.lists_of_user(current_user, ListRecord, ListPeopleRecord)
+    lists = Lists.lists_of_user(current_user, ListRecord)
     render locals: {lists: lists}
   end
 
