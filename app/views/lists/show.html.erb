@@ -52,11 +52,9 @@
           <thead>
             <tr>
               <th>Invitación</th>
-              <th>Grupo</th>
-              <th>Contacto</th>
-              <th>¿Entregada?</th>
-              <th>Confirmados</th>
-              <th>Acciones</th>
+              <th class="text-center">¿Entregada?</th>
+              <th class="text-center">Confirmados</th>
+              <th class="text-center">Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -65,22 +63,23 @@
               <td class="list__title-cell">
                 <%= invitation.title %>
                 <small class="list__invitation-guests"><br/><%= invitation.guests.split(",").join(", ") %></small>
-              </td>
-              <td class="list__group-cell">
-                <% if invitation.group.present? %>
-                  <%= link_to invitation.group, list_path(list.id, group: invitation.group), "data-turbolinks-action" => "replace" %>
+
+                <% contact_info = [invitation.email, invitation.phone].select(&:present?) %>
+                <% if invitation.group.present? || contact_info.any? %>
+                  <br/>
+                  <small>
+                    <%= link_to invitation.group, list_path(list.id, group: invitation.group), "data-turbolinks-action" => "replace" %>
+                    <% if invitation.group.present? && contact_info.any? %>
+                      -
+                    <% end %>
+                    <%= contact_info.join(",") %>
+                  </small>
                 <% end %>
-              </td>
-              <td class="list__contact-cell">
-              <%= invitation.email %>
-              <% if invitation.email.present? && invitation.phone.present? %>
-                <br/>
-              <% end %>
-              <%= invitation.phone %>
               </td>
               <td class="list__delivered-cell">
                 <% if invitation.delivered? %>
-                  <span>Sí</span>
+                  <span class="fa fa-check"></span>
+                  <span>Entregada</span>
                   <%= button_to list_invitation_delivery_mark_path(list.id, invitation.id, group: params[:group]), method: :delete, remote: true, class: "btn btn--sm js-btn-with-loading" do %>
                     <span class="fa fa-undo"></span>
                   <% end %>
@@ -93,7 +92,7 @@
               </td>
               <td class="list__assistance-cell">
                 <% if invitation.has_assistance_confirmed? %>
-                  <span><%= invitation.confirmed_guests_count %></span>
+                  <span><%= pluralize invitation.confirmed_guests_count, "Confirmado", "Confirmados" %></span>
                   <%= link_to new_list_invitation_guests_confirmation_path(list.id, invitation.id, group: params[:group]), class: "btn btn--sm" do %>
                     <span class="fa fa-pencil"></span>
                   <% end %>
