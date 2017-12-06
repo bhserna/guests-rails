@@ -4,11 +4,28 @@
   margin: auto;
 }
 
-.list__title {
+.list__header {
+  @media (min-width: 768px) {
+    display: -webkit-flex;
+    display: flex;
+    margin-top: 2em
+  }
+}
+
+.list__stats-and-filters {
+  @media (min-width: 768px) {
+    margin-top: 0.75em;
+    margin-left: 2.5em;
+    min-width: 1020px;
+  }
+}
+
+h1.list__title {
   text-align: left;
   line-height: 1.2em;
   margin: 1em 0 2em;
-  font-size: 1.5em;
+  font-size: 1.2em;
+  min-width: 300px;
 
   .btn {
     font-size: 11.88px;
@@ -30,7 +47,7 @@
 
   @media (min-width: 768px) {
     display: block;
-    margin-right: 1em;
+    margin-right: 2em;
 
     .form-title {
       text-align: left;
@@ -82,7 +99,6 @@
   @media (min-width: 768px) {
     display: inline-block;
     float: right;
-    top: -27px;
     margin-left: 1em;
 
     .form {
@@ -106,8 +122,10 @@
 }
 
 .list__filter-remover {
-  float: right;
   font-size: 80%;
+  position: absolute;
+  top: -25px;
+  right: 0;
 }
 
 .list__stats-container {
@@ -122,6 +140,7 @@
 .list__stats {
   font-size: 0.9em;
   margin-bottom: 10px;
+  padding: 9px 10px;
 
   @media (min-width: 768px) {
     display: inline-block;

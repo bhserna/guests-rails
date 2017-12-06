@@ -18,7 +18,8 @@ $red: #e65d4f;
 
 .form-group label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 3px;
+  font-size: 0.9em;
 }
 
 .form-control, .form-group select {
@@ -28,7 +29,7 @@ $red: #e65d4f;
   border-radius: 3px;
   border: 1px solid #ccc;
   box-sizing: border-box;
-  height: 45px;
+  height: 40px;
   padding: 10px;
 }
 

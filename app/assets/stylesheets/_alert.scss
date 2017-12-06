@@ -19,26 +19,26 @@ $gray: gray;
   border-color: $red;
   color: $red;
   border-radius: 3px;
-  box-shadow: 5px 5px 0px lighten($red, 20%);
+  box-shadow: 3px 3px 0px lighten($red, 20%);
 }
 
 .alert--success {
   border-color: $green;
   color: $green;
   border-radius: 3px;
-  box-shadow: 5px 5px 0px lighten($green, 20%);
+  box-shadow: 3px 3px 0px lighten($green, 20%);
 }
 
 .alert--info {
   border-color: $blue;
   color: $blue;
   border-radius: 3px;
-  box-shadow: 5px 5px 0px lighten($blue, 20%);
+  box-shadow: 3px 3px 0px lighten($blue, 20%);
 }
 
 .alert--default {
   border-color: $gray;
   color: $gray;
   border-radius: 3px;
-  box-shadow: 5px 5px 0px lighten($gray, 20%);
+  box-shadow: 3px 3px 0px lighten($gray, 20%);
 }

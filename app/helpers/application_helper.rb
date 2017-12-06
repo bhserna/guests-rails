@@ -25,7 +25,8 @@ module ApplicationHelper
   end
 
   def form_label(form, field, options)
-    form.label(field, options.delete(:label))
+    label = options.delete(:label)
+    form.label(field, label) unless label == false
   end
 
   def form_group(form, field, options = {})

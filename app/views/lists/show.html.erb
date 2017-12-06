@@ -1,19 +1,14 @@
 <div id="list" class="list">
-  <h1 class="list__title">
-    <%= list.name %>
-    <%= link_to edit_list_name_path(list.id, group: params[:group]), class: "btn btn--sm" do %>
-      <span class="fa fa-pencil"></span>
-    <% end %>
-  </h1>
+  <div class="list__header">
+    <h1 class="list__title">
+      <%= list.name %>
+      <%= link_to edit_list_name_path(list.id, group: params[:group]), class: "btn btn--sm" do %>
+        <span class="fa fa-pencil"></span>
+      <% end %>
+    </h1>
+    <div class="list__stats-and-filters">
+      <%= link_to "Agregar invitación", new_list_invitation_path(list.id), class: "btn btn--blue list__add-invitation-btn" %>
 
-  <%= link_to "Agregar invitación", new_list_invitation_path(list.id), class: "btn btn--blue list__add-invitation-btn" %>
-
-  <div class="list__container">
-    <div id="list_form" class="list__form">
-      <%= render file: "invitations/new", locals: {list_id: list.id, groups: groups, invitation_form: invitation_form} %>
-    </div>
-
-    <div class="list__table">
       <div id="list_stats" class="list__stats-container">
         <div class="list__stats alert alert--default">
           Invitaciones entregadas: <%= invitations.count(&:delivered?) %> de <%= invitations.count %>
@@ -30,10 +25,10 @@
           <% if params[:group].present? %>
             <%= link_to "Remover filtro", list_path(list.id), class: "list__filter-remover", "data-turbolinks-action" => "replace" %>
           <% end %>
-          <%= form_group f, :group, label: "Filtrar por grupo",
+          <%= form_group f, :group, label: false,
             field_method: :select,
             choices: groups,
-            select_options: {include_blank: true, selected: params[:group]},
+            select_options: {selected: params[:group], prompt: "Filtar por grupo"},
             control_class: "js-filter-by-group" %>
         <% end %>
       </div>
@@ -41,12 +36,20 @@
       <div class="list__search">
         <%= form_for :invitation, url: search_list_path(list.id, group: params[:group]), method: :get,  html: {class: "form js-search-form"} do |f| %>
           <%= form_group f, :search,
-            label: "Buscar",
-            control_options: {value: params[:search]},
+            label: false,
+            control_options: {value: params[:search], placeholder: "Buscar"},
             control_class: "js-search" %>
         <% end %>
       </div>
+    </div>
+  </div>
 
+  <div class="list__container">
+    <div id="list_form" class="list__form">
+      <%= render file: "invitations/new", locals: {list_id: list.id, groups: groups, invitation_form: invitation_form} %>
+    </div>
+
+    <div class="list__table">
       <div class="list__table-container">
         <table id="list_table" class="table table-striped">
           <thead>
