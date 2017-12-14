@@ -20,7 +20,7 @@
 
   <body class="body">
     <div class="bar">
-      <%= link_to root_path, class: "logo" do %>
+      <%= link_to (current_user?? lists_path : root_path), class: "logo" do %>
         <span>Simple Guest List</span>
       <% end %>
       <a href="#" class="btn btn--sm bar__menu-control js-bar-menu-control">
@@ -35,8 +35,7 @@
         <% end %>
 
         <% if current_user? %>
-          <%= link_to "Mis listas", lists_path, class: "btn btn--sm btn--blue" %>
-          <%= button_to "Cerrar sesión", session_path, method: :delete, class: "btn btn--sm" %>
+          <%= link_to "Cerrar sesión", session_path, method: :delete, class: "btn btn--sm" %>
         <% else %>
           <%= link_to "Registrarme", new_registration_path, class: "btn btn--sm btn--blue" %>
           <%= link_to "Iniciar sesión", new_session_path, class: "btn btn--sm btn--blue" %>

@@ -1,55 +1,63 @@
 <div id="list" class="list">
-  <div class="list__header">
-    <h1 class="list__title">
-      <%= list.name %>
-      <%= link_to edit_list_name_path(list.id, group: params[:group]), class: "btn btn--sm" do %>
-        <span class="fa fa-pencil"></span>
-      <% end %>
-    </h1>
-    <div class="list__stats-and-filters">
-      <%= link_to "Agregar invitación", new_list_invitation_path(list.id), class: "btn btn--blue list__add-invitation-btn" %>
-
-      <div id="list_stats" class="list__stats-container">
-        <div class="list__stats alert alert--default">
-          Invitaciones entregadas: <%= invitations.count(&:delivered?) %> de <%= invitations.count %>
-        </div>
-
-        <div class="list__stats alert alert--default">
-          Invitados confirmados: <%= invitations.map(&:confirmed_guests_count).compact.reduce(0, :+) %>
-          de <%= invitations.map { |invitation| invitation.guests.split(",").count }.reduce(0, :+) %>
-        </div>
-      </div>
-
-      <div class="list__filter">
-        <%= form_for :invitation, url: list_invitations_path(list.id), html: {class: "form"} do |f| %>
-          <% if params[:group].present? %>
-            <%= link_to "Remover filtro", list_path(list.id), class: "list__filter-remover", "data-turbolinks-action" => "replace" %>
-          <% end %>
-          <%= form_group f, :group, label: false,
-            field_method: :select,
-            choices: groups,
-            select_options: {selected: params[:group], prompt: "Filtar por grupo"},
-            control_class: "js-filter-by-group" %>
-        <% end %>
-      </div>
-
-      <div class="list__search">
-        <%= form_for :invitation, url: search_list_path(list.id, group: params[:group]), method: :get,  html: {class: "form js-search-form"} do |f| %>
-          <%= form_group f, :search,
-            label: false,
-            control_options: {value: params[:search], placeholder: "Buscar"},
-            control_class: "js-search" %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-
   <div class="list__container">
-    <div id="list_form" class="list__form">
-      <%= render file: "invitations/new", locals: {list_id: list.id, groups: groups, invitation_form: invitation_form} %>
+    <div class="list__sidebar">
+      <h1 class="list__title">
+        <%= list.name %>
+        <%= link_to edit_list_name_path(list.id, group: params[:group]), class: "btn btn--sm" do %>
+          <span class="fa fa-pencil"></span>
+        <% end %>
+      </h1>
+
+      <div id="list_form" class="list__form">
+        <%= render file: "invitations/new", locals: {list_id: list.id, groups: groups, invitation_form: invitation_form} %>
+      </div>
     </div>
 
-    <div class="list__table">
+    <div class="list__main">
+      <h1 class="list__title">
+        <%= list.name %>
+        <%= link_to edit_list_name_path(list.id, group: params[:group]), class: "btn btn--sm" do %>
+          <span class="fa fa-pencil"></span>
+        <% end %>
+      </h1>
+
+      <div class="list__stats-and-filters">
+        <%= link_to "Agregar invitación", new_list_invitation_path(list.id), class: "btn btn--blue list__add-invitation-btn" %>
+
+        <div id="list_stats" class="list__stats-container">
+          <div class="list__stats alert alert--default">
+            Invitaciones entregadas: <%= invitations.count(&:delivered?) %> de <%= invitations.count %>
+          </div>
+
+          <div class="list__stats alert alert--default">
+            Invitados confirmados: <%= invitations.map(&:confirmed_guests_count).compact.reduce(0, :+) %>
+            de <%= invitations.map { |invitation| invitation.guests.split(",").count }.reduce(0, :+) %>
+          </div>
+        </div>
+
+        <div class="list__filter">
+          <%= form_for :invitation, url: list_invitations_path(list.id), html: {class: "form"} do |f| %>
+            <% if params[:group].present? %>
+              <%= link_to "Remover filtro", list_path(list.id), class: "list__filter-remover", "data-turbolinks-action" => "replace" %>
+            <% end %>
+            <%= form_group f, :group, label: false,
+              field_method: :select,
+              choices: groups,
+              select_options: {selected: params[:group], prompt: "Filtar por grupo"},
+              control_class: "js-filter-by-group" %>
+          <% end %>
+        </div>
+
+        <div class="list__search">
+          <%= form_for :invitation, url: search_list_path(list.id, group: params[:group]), method: :get,  html: {class: "form js-search-form"} do |f| %>
+            <%= form_group f, :search,
+              label: false,
+              control_options: {value: params[:search], placeholder: "Buscar"},
+              control_class: "js-search" %>
+          <% end %>
+        </div>
+      </div>
+
       <div class="list__table-container">
         <table id="list_table" class="table table-striped">
           <thead>
@@ -71,10 +79,14 @@
                 <% if invitation.group.present? || contact_info.any? %>
                   <br/>
                   <small>
-                    <%= link_to invitation.group, list_path(list.id, group: invitation.group), "data-turbolinks-action" => "replace" %>
+                    <% if invitation.group.present? %>
+                      <%= link_to invitation.group, list_path(list.id, group: invitation.group), "data-turbolinks-action" => "replace" %>
+                    <% end %>
+
                     <% if invitation.group.present? && contact_info.any? %>
                       -
                     <% end %>
+
                     <%= contact_info.join(",") %>
                   </small>
                 <% end %>
