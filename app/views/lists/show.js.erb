@@ -6,7 +6,7 @@ if ($("#list").length) {
     invitation_form: invitation_form
   }) %>");
 
-  List.init({focusInvitationTitle: <%= focus_invitation_title %>});
+  List.init({focusInvitationTitle: <%= focus_invitation_title %>, highlightInvitation: <%= highlight_invitation %>});
 } else {
   Turbolinks.visit("<%= list_path(list.id) %>");
 }

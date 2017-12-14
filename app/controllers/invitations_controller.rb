@@ -13,7 +13,7 @@ class InvitationsController < ApplicationController
     status = Lists.add_invitation(list_id, params.require(:invitation), ListInvitationRecord)
 
     if status.success?
-      update_list(list_id, focus_invitation_title: true)
+      update_list(list_id, focus_invitation_title: true, highlight_invitation: status.invitation_id)
     else
       render status: 422, locals: {
         list_id: list_id,

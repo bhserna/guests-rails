@@ -4,7 +4,7 @@ module ListRenderer
   end
 
   def update_list(list_id, opts = {})
-    defaults = { focus_invitation_title: false }
+    defaults = { focus_invitation_title: false, highlight_invitation: false }
     render "lists/show.js", locals: list_locals.merge(defaults).merge(opts)
   end
 

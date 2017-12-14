@@ -76,8 +76,8 @@ module Lists
     errors = InvitationValidator.validate(form)
 
     if errors.empty?
-      store.create(invitation.creation_data.merge(list_id: list_id))
-      SuccessResponse
+      record = store.create(invitation.creation_data.merge(list_id: list_id))
+      InvitationCreatedResponse.new(record[:id])
     else
       form.add_errors(errors)
       ErrorWithForm.new(form)
@@ -203,6 +203,18 @@ module Lists
 
     def success?
       false
+    end
+  end
+
+  class InvitationCreatedResponse
+    attr_reader :invitation_id
+
+    def initialize(id)
+      @invitation_id = id
+    end
+
+    def success?
+      true
     end
   end
 

@@ -28,6 +28,12 @@ search = (el) ->
 focusInvitationTitle = ->
   $(".js-invitation-form").find("#invitation_title").focus()
 
+highlightInvitation = (id) ->
+  return unless id
+  elementId = "invitation_#{id}"
+  location.hash = elementId
+  $("##{elementId}").addClass("yellow-fade")
+
 initGroupAutocomplete = ->
   $el = $(".js-group-autocomplete")
   $(document).on 'turbolinks:before-cache', ->
@@ -37,6 +43,7 @@ initGroupAutocomplete = ->
   $el.autocomplete source: $el.data("options"), minLength: 0
 
 init = (opts = {}) ->
+  highlightInvitation(opts.highlightInvitation)
   focusInvitationTitle() if opts.focusInvitationTitle
   initGroupAutocomplete()
   selectize $(".js-selectize--guests"),

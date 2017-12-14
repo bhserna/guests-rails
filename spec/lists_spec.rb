@@ -61,6 +61,9 @@ module Lists
     end
 
     def create(attrs)
+      record = attrs.merge(id: @records.count + 1)
+      @records << record
+      record
     end
 
     def update(id, attrs)
