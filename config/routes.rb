@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root "pages#index"
   resource :session, only: [:new, :create, :destroy]
   resources :registrations, only: [:new, :create]
+  resources :wedding_planner_registrations, only: [:new, :create]
   resource :page, only: [] do
     get :support
   end

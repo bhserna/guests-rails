@@ -21,7 +21,7 @@
   <body class="body">
     <div class="bar">
       <%= link_to (current_user?? lists_path : root_path), class: "logo" do %>
-        <span>Simple Guest List</span>
+        <span>Invita.app</span>
       <% end %>
       <a href="#" class="btn btn--sm bar__menu-control js-bar-menu-control">
         <span class="fa fa-bars" aria-hidden="true"></span>
@@ -37,6 +37,7 @@
         <% if current_user? %>
           <%= link_to "Cerrar sesión", session_path, method: :delete, class: "btn btn--sm" %>
         <% else %>
+          <%= link_to "Registrarme como organizador", new_wedding_planner_registration_path, class: "btn btn--sm btn--orange" %>
           <%= link_to "Registrarme", new_registration_path, class: "btn btn--sm btn--blue" %>
           <%= link_to "Iniciar sesión", new_session_path, class: "btn btn--sm btn--blue" %>
         <% end %>

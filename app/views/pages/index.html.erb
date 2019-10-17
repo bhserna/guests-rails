@@ -1,66 +1,12 @@
-<% unless current_user? %>
-  <%= content_for :top_buttons do %>
-    <%= link_to "Registrarme", new_registration_path, class: "btn btn--sm btn--blue" %>
-    <%= link_to "Iniciar sesión", new_session_path, class: "btn btn--sm btn--blue" %>
-  <% end %>
-<% end %>
-
 <div class="pitch">
-  <h1 class="pitch__title">Te ayudamos a crear y confirmar la lista de invitados para tu evento.</h1>
+  <h1 class="pitch__title">Herramienta para crear y confirmar la lista de invitados para tu evento.</h1>
+
+  <p class="text-center">Si estas aquí es porque tu organizador de eventos te invitó a usar
+  Invita.app para que sea más fácil para ti crear la lista de invitados para tu
+  evento.</p>
+
+  <p class="text-center">Regístrate para empezar llenar tu lista =)</p>
 
   <div class="pitch__btn-box">
-    <%= link_to "Crea gratis tu lista de invitados", new_registration_path, class: "btn btn--lg btn--blue" %>
+    <%= link_to "Registrarme", new_registration_path, class: "btn btn--lg btn--blue" %>
   </div>
-
-  <p>Tal vez ya te diste cuenta que hacer una lista de invitados no es tan fácil, ya que es normal:</p>
-
-  <ul>
-    <li>Olvidar invitar personas importantes.</li>
-    <li>Invitar más personas de las que tu presupuesto permite.</li>
-    <li>Revolver o duplicar los invitados con tu novio, novia o otra persona involucrada en la organización.</li>
-    <li>Tener 1000 versiones diferentes del archivo de excel con la lista de invitados.</li>
-    <li>Perder registro de a quien has invitado.</li>
-    <li>No tener idea quien de tus invitados va asistir a tu boda.</li>
-    <li>Recibir confirmaciones por facebook, whatsapp, correo electrónico, la página de la boda, etc.</li>
-  </ul>
-
-  <p>Lo que tu quieres muy probablemente sea:</p>
-
-  <ul>
-    <li>Tener una sola versión de la lista disponible para todos los organizadores.</li>
-    <li>Poder editar fácilmente la lista.</li>
-    <li>Poder llevar registro de a quien se han entregado invitaciones.</li>
-    <li>Poder llevar registro de las personas confirmadas.</li>
-    <li>Y en el mejor de los casos que te ayuden a confirmar a los invitados.</li>
-  </ul>
-
-
-  <p>Y esto es justo lo que obtendrás con Simple Guest List</p>
-
-  <p>Una aplicación web que te ayudará a:</li>
-
-  <ul>
-    <li>Visualizar y tener control de los invitados</li>
-    <li>Colaborar con los otros organizadores</li>
-    <li>Llevar registro de las invitaciones entregadas</li>
-    <li>Llevar registro de las personas confirmadas</li>
-    <li>Confirmar a los invitados automáticamente por correo electrónico</li>
-  </ul>
-
-  <%= image_tag "screenshot.png", class: "pitch__screenshot alert alert--default" %>
-
-  <h1 class="pitch__title">Noticias y Artículos</h1>
-
-  <div class="text-center">
-    <% articles.each do |article| %>
-      <%= link_to article[:title], article_path(article[:slug]) %>
-      <br/>
-    <% end %>
-  </ul>
-
-  <h2 class="pitch__title">¿Aún no has creado tu lista?</h2>
-
-  <div class="pitch__btn-box">
-    <%= link_to "Crea gratis tu lista de invitados", new_registration_path, class: "btn btn--lg btn--blue" %>
-  </div>
-</div>
