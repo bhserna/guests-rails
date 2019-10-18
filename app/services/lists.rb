@@ -12,12 +12,12 @@ module Lists
     ListCreator.create_list(*args)
   end
 
-  def self.edit_list_name_form(list_id, store)
-    ListCreator.edit_list_name_form(list_id, store)
+  def self.edit_list_form(list_id, store)
+    ListCreator.edit_list_form(list_id, store)
   end
 
-  def self.update_list_name(list_id, data, store)
-    ListCreator.update_list_name(list_id, data, store)
+  def self.update_list(list_id, data, store)
+    ListCreator.update_list(list_id, data, store)
   end
 
   def self.lists_of_user(user, lists_store)

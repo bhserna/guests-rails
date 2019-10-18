@@ -21,16 +21,16 @@ module Lists
       end
     end
 
-    def self.edit_list_name_form(list_id, store)
+    def self.edit_list_form(list_id, store)
       Form.new(store.find_by_list_id(list_id))
     end
 
-    def self.update_list_name(list_id, data, store)
+    def self.update_list(list_id, data, store)
       form = Form.new(data)
       errors = Validator.validate(form)
 
       if errors.empty?
-        store.update_list(list_id, name: form.name)
+        store.update_list(list_id, form.to_h)
         SuccessResponse
       else
         form.add_errors(errors)

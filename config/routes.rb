@@ -6,9 +6,8 @@ Rails.application.routes.draw do
   resource :page, only: [] do
     get :support
   end
-  resources :lists, only: [:new, :create, :index, :show] do
+  resources :lists, only: [:new, :create, :edit, :update, :index, :show] do
     get :search, on: :member
-    resource :name, only: [:edit, :update], controller: :list_names
     resources :invitations, only: [:new, :create, :edit, :update, :destroy] do
       resource :delivery_mark, only: [:create, :destroy]
       resource :guests_confirmation, only: [:new, :create]

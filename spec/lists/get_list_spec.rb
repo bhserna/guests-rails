@@ -13,6 +13,7 @@ module Lists
       list = Lists.get_list(list_id, lists_store)
       expect(list.id).to eq list_id
       expect(list.name).to eq "Mi super lista"
+      expect(list).to have_event_date
       expect(list.event_date).to eq Date.new(2019, 10, 9)
     end
   end

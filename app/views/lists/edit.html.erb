@@ -1,0 +1,14 @@
+<%= form_for form, as: :list, url: list_url(list_id, group: params[:group]), method: :patch, html: {class: "form"} do |f| %>
+  <h1 class="form-title">Editar lista</h1>
+
+  <%= form_group f, :name,
+    label: "Nombre del evento",
+    control_options: {placeholder: "Ejemplo: Boda Gustavo y Caro"} %>
+
+  <%= form_group f, :event_date,
+    field_method: :date_field,
+    label: "La fecha del evento" %>
+
+  <%= f.button "Actualizar", class: "btn btn--md btn--blue" %>
+  <%= link_to "Cancelar", list_path(list_id, group: params[:group]), method: :get, class: "btn btn--md" %>
+<% end %>
