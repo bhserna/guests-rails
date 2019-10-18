@@ -15,7 +15,14 @@
 
   <ul>
     <% lists.each do |list| %>
-      <li><%= link_to list.name, list_path(list.id), class: "lists__list-link" %></li>
+      <li>
+        <%= link_to list_path(list.id), class: "lists__list-link" do %>
+          <%= list.name %>
+          <% if list.has_event_date? %>
+            <br/><span class="lists__list-date"><%= l(list.event_date, format: :long).capitalize %></span>
+          <% end %>
+        <% end %>
+      </li>
     <% end %>
   </ul>
 </div>

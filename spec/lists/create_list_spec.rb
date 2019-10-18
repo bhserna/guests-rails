@@ -24,6 +24,7 @@ module Lists
     it "has a form" do
       form = new_list_form
       expect(form.name).to eq nil
+      expect(form.event_date).to eq nil
     end
 
     it "has no errors" do
@@ -36,13 +37,17 @@ module Lists
 
       before do
         @store = DummyStore
-        @data = {"name" => "Lista uno"}
+        @data = {"name" => "Lista uno", "event_date" => "2019-12-10" }
         @user_id = "1234"
       end
 
       it "saves the list with the form data" do
-        expect(store).to receive(:save)
-          .with(list_id: "gen-id-1234", user_id: "1234", name: "Lista uno")
+        expect(store).to receive(:save).with(
+          list_id: "gen-id-1234",
+          user_id: "1234",
+          name: "Lista uno",
+          event_date: Date.new(2019, 12, 10)
+        )
         create_list(user_id, data, store)
       end
 
@@ -57,7 +62,7 @@ module Lists
 
       before do
         @store = DummyStore
-        @data = {"name" => ""}
+        @data = {"name" => "", "event_date" => ""}
         @user_id = "1234"
       end
 
@@ -66,10 +71,11 @@ module Lists
         create_list(user_id, data, store)
       end
 
-      it "returns a blank name error" do
+      it "returns a blank name and event date error" do
         response = create_list(user_id, data, store)
         expect(response.form.errors).to eq({
-          name: "no puede estar en blanco"
+          name: "no puede estar en blanco",
+          event_date: "no puede estar en blanco"
         })
       end
 

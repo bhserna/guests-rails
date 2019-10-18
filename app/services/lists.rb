@@ -31,11 +31,13 @@ module Lists
   def self.get_all_lists(lists_store, invitations_store, users_store)
     users = users_store.all.map{|data| User.new(data)}.group_by(&:id)
     invitations_counts = invitations_store.counts_by_list_id
-    lists_store.all
+    lists = lists_store.all
       .map{|data| List.new(data)}
-      .sort_by(&:created_at)
       .map{|list| ListWithUser.new(list, users[list.user_id].first)}
       .map{|list| ListWithInvitationsCount.new(list, invitations_counts[list.id] || 0)}
+
+    with_date, without_date = lists.partition(&:has_event_date?)
+    without_date + with_date.sort_by(&:event_date)
   end
 
   def self.current_access_details(*args)
@@ -146,13 +148,18 @@ module Lists
   end
 
   class List
-    attr_reader :id, :name, :user_id, :created_at
+    attr_reader :id, :name, :event_date, :user_id, :created_at
 
     def initialize(data)
       @id = data[:list_id]
       @name = data[:name]
+      @event_date = data[:event_date]
       @user_id = data[:user_id]
       @created_at = data[:created_at]
+    end
+
+    def has_event_date?
+      !event_date.nil?
     end
   end
 
