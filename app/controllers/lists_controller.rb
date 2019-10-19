@@ -3,7 +3,7 @@ class ListsController < ApplicationController
   before_action :authenticate_user
 
   def index
-    lists = Lists.lists_of_user(current_user, ListRecord)
+    lists = Lists.lists_of_user(current_user, ListRecord, ListPeopleRecord)
     render locals: {lists: lists}
   end
 

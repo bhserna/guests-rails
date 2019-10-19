@@ -1,0 +1,8 @@
+<%= form_group f, :first_name,
+  label: "Nombre",
+  control_options: {placeholder: "Ejemplo: Carlos, Brenda" } %>
+<%= form_group f, :last_name, label: "Apellidos" %>
+<%= form_group f, :email, field_method: :email_field, label: "Email" %>
+<%= form_group f, :wedding_roll, label: "Roll",
+  field_method: :select,
+  choices: form.wedding_roll_options.map { |option| option.values_at(:text, :value) } %>

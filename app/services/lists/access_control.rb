@@ -58,7 +58,6 @@ module Lists
     WEDDING_ROLL_OPTIONS = {
       groom: "Novio",
       bride: "Novia",
-      wedding_planner: "Wedding planner",
       other: "Otro"
     }
 

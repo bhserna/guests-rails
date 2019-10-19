@@ -20,8 +20,13 @@ module Lists
     ListCreator.update_list(list_id, data, store)
   end
 
-  def self.lists_of_user(user, lists_store)
-    lists_store.find_all_by_user_id(user.id).map { |record| List.new(record) }
+  def self.lists_of_user(user, lists_store, people_store)
+    records = lists_store.find_all_by_user_id(user.id)
+    list_ids = people_store.find_ids_of_lists_with_access_for_email(user.email)
+    records = (records + lists_store.find_all_by_list_ids(list_ids)).uniq
+    lists = records.map { |record| List.new(record) }
+    with_date, without_date = lists.partition(&:has_event_date?)
+    without_date + with_date.sort_by(&:event_date)
   end
 
   def self.get_list(list_id, lists_store)

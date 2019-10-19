@@ -1,0 +1,56 @@
+<div class="list">
+  <div class="list__container">
+    <div class="list__sidebar">
+      <h1 class="list__title">
+        Acceso a novios
+        <br/><%= link_to "Regresar a lista", list_path(list.id), class: "list__title-extras" %>
+      </h1>
+
+      <div id="list_form" class="list__form">
+        <%= link_to "Agregar acceso", new_list_access_path(list.id), class: "btn btn--blue" %>
+      </div>
+    </div>
+
+    <div class="list__main">
+      <h1 class="list__title">
+        Acceso a novios
+        <br/><%= link_to "Regresar a lista", list_path(list.id), class: "list__title-extras" %>
+      </h1>
+
+      <div class="list__stats-and-filters">
+        <%= link_to "Agregar acceso", new_list_access_path(list.id), class: "btn btn--blue list__add-invitation-btn" %>
+      </div>
+
+      <div class="list__table-container">
+        <table id="list_table" class="table table-striped">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th class="text-center">Roll</th>
+              <th class="text-center">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% people_with_access.each do |person| %>
+              <tr>
+                <td>
+                  <%= person.name %>
+                  <br/><small class="list__access-email"><%= person.email %></small>
+                </td>
+                <td class="text-center"><%= person.wedding_roll %></td>
+                <td class="list__actions-cell">
+                  <%= link_to edit_list_access_path(list.id, person.id), class: "btn btn--sm" do %>
+                    <span class="fa fa-pencil"></span>
+                  <% end %>
+                  <%= button_to list_access_path(list.id, person.id), method: :delete, class: "btn btn--sm js-btn-with-loading" do %>
+                    <span class="fa fa-trash"></span>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

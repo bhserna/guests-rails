@@ -29,7 +29,14 @@ h1.list__title {
   .list__date {
     font-weight: normal;
     font-size: 0.7em;
+    line-height: 1.1em;
     color: #aaa;
+  }
+
+  .list__title-extras {
+    font-weight: normal;
+    line-height: 1.1em;
+    font-size: 0.7em;
   }
 
   .btn {
@@ -172,6 +179,10 @@ h1.list__title {
 }
 
 .list__invitation-guests {
+  color: #888;
+}
+
+.list__access-email {
   color: #888;
 }
 
