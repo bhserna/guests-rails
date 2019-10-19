@@ -1,6 +1,7 @@
 class ListsController < ApplicationController
   include ListRenderer
   before_action :authenticate_user
+  before_action :authorize, only: [:show, :edit, :update]
 
   def index
     lists = Lists.lists_of_user(current_user, ListRecord, ListPeopleRecord)
@@ -43,6 +44,12 @@ class ListsController < ApplicationController
   end
 
   private
+
+  def authorize
+    unless Lists.has_access?(current_user, list_id, ListRecord, ListPeopleRecord)
+      redirect_to lists_path
+    end
+  end
 
   def list_id
     params[:id]

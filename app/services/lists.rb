@@ -163,6 +163,10 @@ module Lists
       @created_at = data[:created_at]
     end
 
+    def owner?(user)
+      user_id.to_s == user.id.to_s
+    end
+
     def has_event_date?
       !event_date.nil?
     end

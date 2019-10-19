@@ -43,6 +43,12 @@ class ListAccessesController < ApplicationController
 
   private
 
+  def authorize
+    unless list.owner?(current_user)
+      redirect_to list_path(list_id)
+    end
+  end
+
   def people_with_access
     Lists
     .current_access_details(list_id, ListRecord, ListPeopleRecord)
