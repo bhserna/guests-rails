@@ -7,7 +7,7 @@
           <br/><span class="list__date"><%= l(list.event_date, format: :long).capitalize %></span>
         <% end %>
         <% if list.owner?(current_user) %>
-          <br/><%= link_to "Acceso a novios", list_accesses_path(list.id), class: "list__title-extras" %>
+          <br/><%= link_to "Accesos para editar lista", list_accesses_path(list.id), class: "list__title-extras" %>
         <% end %>
         <%= link_to edit_list_path(list.id, group: params[:group]), class: "btn btn--sm" do %>
           <span class="fa fa-pencil"></span>
@@ -26,7 +26,7 @@
           <br/><span class="list__date"><%= l(list.event_date, format: :long).capitalize %></span>
         <% end %>
         <% if list.owner?(current_user) %>
-          <br/><%= link_to "Acceso a novios", list_accesses_path(list.id), class: "list__title-extras" %>
+          <br/><%= link_to "Accesos para editar lista", list_accesses_path(list.id), class: "list__title-extras" %>
         <% end %>
         <%= link_to edit_list_path(list.id, group: params[:group]), class: "btn btn--sm" do %>
           <span class="fa fa-pencil"></span>

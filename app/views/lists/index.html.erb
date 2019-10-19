@@ -2,16 +2,26 @@
   <h1 class="lists__title">Mis listas</h1>
 
   <% if lists.empty? %>
+    <% if current_user.wedding_planner? %>
+      <p style="text-align: center">
+        Aquí verás las listas de invitados que hayas creado. Te recomendamos que
+        crees una lista por evento. Por ejemplo: <strong>Boda de Pedro y Carmen</strong>,
+        <strong>Quinceaños de Paty</strong>, <strong>Despedida de Juan y Ale</strong>, etc.
+      </p>
+    <% end %>
+  <% end %>
+
+  <% unless current_user.wedding_planner? %>
     <p style="text-align: center">
-      Aquí verás las listas de invitados que hayas creado. Te recomendamos que
-      crees una lista por evento. Por ejemplo: <strong>Mi despedida de soltera</strong>,
-      <strong>Mi despedida de soltero</strong>, <strong>Nuestra boda</strong>, etc.
+      Aquí verás las listas que tu organizador o organizadora haya creado para ti.
     </p>
   <% end %>
 
-  <div class="lists__btn-box">
-    <%= link_to "Crear lista para evento", new_list_path, class: "btn btn--blue" %>
-  </div>
+  <% if current_user.wedding_planner? %>
+    <div class="lists__btn-box">
+      <%= link_to "Crear lista para evento", new_list_path, class: "btn btn--blue" %>
+    </div>
+  <% end %>
 
   <ul>
     <% lists.each do |list| %>
