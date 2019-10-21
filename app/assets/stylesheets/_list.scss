@@ -15,6 +15,7 @@
 .list__stats-and-filters {
   @media (min-width: 768px) {
     padding: 2em 1em 2em;
+    display: flex,
   }
 }
 
@@ -50,8 +51,8 @@ h1.list__title {
 
 .list__container {
   @media (min-width: 768px) {
-    display: -webkit-flex;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
   }
 }
 
@@ -60,8 +61,14 @@ h1.list__title {
 
   @media (min-width: 768px) {
     display: block;
-    width: 300px;
-    position: fixed;
+    background: white;
+  }
+}
+
+.list__sidebar-content {
+  @media (min-width: 768px) {
+    position: sticky;
+    top: 1rem;
   }
 }
 
@@ -103,8 +110,7 @@ h1.list__title {
   }
 
   @media (min-width: 768px) {
-    flex-basis: 100%;
-    margin-left: 300px;
+    overflow: auto;
 
     .list__table-container {
       min-width: 1070px;
@@ -127,7 +133,6 @@ h1.list__title {
 
   @media (min-width: 768px) {
     display: inline-block;
-    float: right;
     margin-left: 1em;
 
     .form {
@@ -161,6 +166,7 @@ h1.list__title {
   margin-bottom: 2em;
 
   @media (min-width: 768px) {
+    flex-shrink: 0;
     display: inline-block;
     margin-bottom: 0;
   }

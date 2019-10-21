@@ -1,13 +1,15 @@
 <div class="list">
   <div class="list__container">
     <div class="list__sidebar">
-      <h1 class="list__title">
-        Accesos para editar lista
-        <br/><%= link_to "Regresar a lista", list_path(list.id), class: "list__title-extras" %>
-      </h1>
+      <div class="list__sidebar-content">
+        <h1 class="list__title">
+          Accesos para editar lista
+          <br/><%= link_to "Regresar a lista", list_path(list.id), class: "list__title-extras" %>
+        </h1>
 
-      <div id="list_form" class="list__form">
-        <%= link_to "Agregar acceso", new_list_access_path(list.id), class: "btn btn--blue" %>
+        <div id="list_form" class="list__form">
+          <%= link_to "Agregar acceso", new_list_access_path(list.id), class: "btn btn--blue" %>
+        </div>
       </div>
     </div>
 

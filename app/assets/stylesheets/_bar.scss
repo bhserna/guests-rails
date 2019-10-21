@@ -2,6 +2,7 @@
 
 .bar {
   @extend %clearfix;
+  background: white;
 }
 
 .bar__buttons {
