@@ -24,7 +24,6 @@ h1.list__title {
   line-height: 1.1em;
   margin: 1em 0 2em;
   font-size: 1.2em;
-  width: 270px;
   position: relative;
 
   .list__date {
@@ -45,7 +44,7 @@ h1.list__title {
     margin-bottom: 2px;
     position: absolute;
     top: 0;
-    right: 0;
+    right: 0.5rem;
   }
 }
 

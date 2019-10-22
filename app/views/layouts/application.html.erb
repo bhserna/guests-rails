@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.default.min.css" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
 
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet"> 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.min.js"></script>
     <script src="https://use.fontawesome.com/6ab7fce2e2.js"></script>
@@ -19,7 +21,7 @@
   </head>
 
   <body class="body">
-    <div class="bar">
+    <div class="bar relative na2 pa3 z-2 bb b--light-gray">
       <%= link_to (current_user?? lists_path : root_path), class: "logo" do %>
         <span>Invita.app</span>
       <% end %>
@@ -37,9 +39,9 @@
         <% if current_user? %>
           <%= link_to "Cerrar sesión", session_path, method: :delete, class: "btn btn--sm" %>
         <% else %>
-          <%= link_to "Registrarme como organizador", new_wedding_planner_registration_path, class: "btn btn--sm btn--orange" %>
-          <%= link_to "Registrarme", new_registration_path, class: "btn btn--sm btn--blue" %>
-          <%= link_to "Iniciar sesión", new_session_path, class: "btn btn--sm btn--blue" %>
+          <%= link_to "Registrarme como organizador", new_wedding_planner_registration_path, class: "mb1 btn btn--sm btn--orange" %>
+          <%= link_to "Registrarme", new_registration_path, class: "mb1 btn btn--sm btn--blue" %>
+          <%= link_to "Iniciar sesión", new_session_path, class: "mb1 btn btn--sm btn--blue" %>
         <% end %>
       </div>
     </div>

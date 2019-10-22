@@ -1,14 +1,14 @@
 <div id="list" class="list">
   <div class="list__container">
-    <div class="list__sidebar">
+    <div class="list__sidebar pb4 br b--light-gray nl2 pl3 z-1">
       <div class="list__sidebar-content">
         <h1 class="list__title">
-          <%= list.name %>
+          <span class="dib mr4 pr3"><%= list.name %></span>
           <% if list.has_event_date? %>
             <br/><span class="list__date"><%= l(list.event_date, format: :long).capitalize %></span>
           <% end %>
           <% if list.owner?(current_user) %>
-            <br/><%= link_to "Accesos para editar lista", list_accesses_path(list.id), class: "list__title-extras" %>
+            <br/><%= link_to "Accesos para editar", list_accesses_path(list.id), class: "list__title-extras" %>
           <% end %>
           <%= link_to edit_list_path(list.id, group: params[:group]), class: "btn btn--sm" do %>
             <span class="fa fa-pencil"></span>
@@ -23,12 +23,12 @@
 
     <div class="list__main">
       <h1 class="list__title">
-        <%= list.name %>
+        <span class="dib mr4 pr3"><%= list.name %></span>
         <% if list.has_event_date? %>
           <br/><span class="list__date"><%= l(list.event_date, format: :long).capitalize %></span>
         <% end %>
         <% if list.owner?(current_user) %>
-          <br/><%= link_to "Accesos para editar lista", list_accesses_path(list.id), class: "list__title-extras" %>
+          <br/><%= link_to "Accesos para editar", list_accesses_path(list.id), class: "list__title-extras" %>
         <% end %>
         <%= link_to edit_list_path(list.id, group: params[:group]), class: "btn btn--sm" do %>
           <span class="fa fa-pencil"></span>
