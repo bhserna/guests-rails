@@ -5,6 +5,6 @@ class ApplicationMailer < ActionMailer::Base
   def password_recovery_instructions(user_id)
     @user = Users.get_user(user_id, UserRecord)
     @token = Users.get_password_recovery_token(user_id, UserRecord)
-    mail to: @user.email, subject: "Simple Guest List -> Instrucciones para recuperar contraseña"
+    mail to: @user.email, subject: "Invita.app -> Instrucciones para recuperar contraseña"
   end
 end
