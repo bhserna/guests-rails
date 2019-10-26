@@ -1,9 +1,10 @@
-<%= form_for form, as: :user, url: wedding_planner_registrations_url, method: :post, html: {class: "form"} do |f| %>
+<%= form_for form, as: :user, url: wedding_planner_registrations_url, method: :post, html: {class: "form mb5"} do |f| %>
   <h1 class="form-title">Registrarme como organizador</h1>
 
   <%= f.hidden_field :user_type, value: :wedding_planner %>
   <%= form_group f, :first_name, label: "Nombre" %>
   <%= form_group f, :last_name, label: "Apellidos" %>
+  <%= form_group f, :org_name, label: "Nombre de organización (opcional)" %>
   <%= form_group f, :email, field_method: :email_field %>
   <%= form_group f, :password, label: "Contraseña", field_method: :password_field %>
   <%= form_group f, :password_confirmation, label: "Confirmación de contraseña", field_method: :password_field %>

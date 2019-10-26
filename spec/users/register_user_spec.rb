@@ -29,6 +29,7 @@ module Users
       form = register_user_form
       expect(form.first_name).to eq nil
       expect(form.last_name).to eq nil
+      expect(form.org_name).to eq nil
       expect(form.email).to eq nil
       expect(form.user_type).to eq nil
       expect(form.password).to eq nil
@@ -57,6 +58,7 @@ module Users
         @data = {
           "first_name" => "Juanito",
           "last_name" => "Perez",
+          "org_name" => "Juanitos Orgs",
           "email" => "j@example.com",
           "user_type" => "groom",
           "password" => "1234secret",
@@ -68,6 +70,7 @@ module Users
         expect(store).to receive(:save).with(
           first_name: "Juanito",
           last_name: "Perez",
+          org_name: "Juanitos Orgs",
           email: "j@example.com",
           user_type: "groom",
           password_hash: "---encripted--1234secret--"
@@ -86,6 +89,7 @@ module Users
           id: rand(1000),
           first_name: "Juanito",
           last_name: "Perez",
+          org_name: "Janitos Orgs",
           email: "j@example.com",
           user_type: "groom",
           password_hash: "---encripted--1234secret--"
@@ -105,6 +109,7 @@ module Users
         @data = {
           "first_name" => "",
           "last_name" => nil,
+          "org_name" => nil,
           "email" => "",
           "user_type" => nil,
           "password" => nil,

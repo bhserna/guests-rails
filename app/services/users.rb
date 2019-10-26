@@ -200,6 +200,7 @@ module Users
       store.save(
         first_name: form.first_name,
         last_name: form.last_name,
+        org_name: form.org_name,
         email: form.email,
         user_type: form.user_type,
         password_hash: encryptor.encrypt(form.password)
@@ -229,7 +230,7 @@ module Users
       def errors
         [validate_confirmation,
          validate_uniqueness_of_email,
-         *validate_presence_of(form, *form.fields)]
+         *validate_presence_of(form, *form.required_fields)]
           .compact.to_h
       end
 
@@ -251,7 +252,7 @@ module Users
     end
 
     class Form
-      ATTRS = [:first_name, :last_name, :email, :user_type, :password, :password_confirmation]
+      ATTRS = [:first_name, :last_name, :org_name, :email, :user_type, :password, :password_confirmation]
       attr_reader *ATTRS
       attr_reader :errors
 
@@ -262,6 +263,10 @@ module Users
 
       def fields
         ATTRS
+      end
+
+      def required_fields
+        fields - [:org_name]
       end
 
       def add_errors(errors)
