@@ -45,7 +45,6 @@ module Users
       expect(form.user_type_options).to eq [
         {value: :groom, text: "Novio"},
         {value: :bride, text: "Novia"},
-        {value: :wedding_planner, text: "Wedding planner"},
         {value: :other, text: "Otro"}
       ]
     end

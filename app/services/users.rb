@@ -1,3 +1,4 @@
+require "active_support/all"
 require_relative "validations"
 
 module Users
@@ -270,7 +271,6 @@ module Users
       def user_type_options
         [{value: :groom, text: "Novio"},
          {value: :bride, text: "Novia"},
-         {value: :wedding_planner, text: "Wedding planner"},
          {value: :other, text: "Otro"}]
       end
 

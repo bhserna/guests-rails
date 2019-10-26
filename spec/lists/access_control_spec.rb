@@ -1,4 +1,5 @@
 require_relative "../lists_spec"
+require_relative "../users_spec"
 
 module Lists
   RSpec.describe "Access control" do
@@ -166,7 +167,6 @@ module Lists
         expect(form.wedding_roll_options).to eq [
           {value: :groom, text: "Novio"},
           {value: :bride, text: "Novia"},
-          {value: :wedding_planner, text: "Wedding planner"},
           {value: :other, text: "Otro"}
         ]
       end
@@ -272,7 +272,6 @@ module Lists
         expect(form.wedding_roll_options).to eq [
           {value: :groom, text: "Novio"},
           {value: :bride, text: "Novia"},
-          {value: :wedding_planner, text: "Wedding planner"},
           {value: :other, text: "Otro"}
         ]
       end

@@ -1,0 +1,7 @@
+<%= form_for form, as: :access, url: list_accesses_url(list.id), method: :post, html: {class: "form"} do |f| %>
+  <h1 class="form-title">Nuevo acceso a lista</h1>
+  <p class="text-center">Aquí puedes agregar al novio, a la novia y a todas las
+  personas que vayan a colaborar en la lista</p>
+  <%= render "fields", form: form, f: f %>
+  <%= f.button "Crear acceso", class: "btn btn--md btn--blue" %>
+<% end %>

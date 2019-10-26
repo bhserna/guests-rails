@@ -1,8 +1,8 @@
-<% default_title = "Software para administrar la lista de invitados para tu evento." %>
+<% default_title = "Software para crear la lista de invitados para tus eventos." %>
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Simple Guest List | <%= content_for(:title) || default_title %></title>
+    <title>Invita.app | <%= content_for(:title) || default_title %></title>
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.default.min.css" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
 
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet"> 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.min.js"></script>
     <script src="https://use.fontawesome.com/6ab7fce2e2.js"></script>
@@ -19,9 +21,9 @@
   </head>
 
   <body class="body">
-    <div class="bar">
+    <div class="bar relative na2 pa3 z-2 bb b--light-gray">
       <%= link_to (current_user?? lists_path : root_path), class: "logo" do %>
-        <span>Simple Guest List</span>
+        <span>Invita.app</span>
       <% end %>
       <a href="#" class="btn btn--sm bar__menu-control js-bar-menu-control">
         <span class="fa fa-bars" aria-hidden="true"></span>
@@ -37,8 +39,9 @@
         <% if current_user? %>
           <%= link_to "Cerrar sesión", session_path, method: :delete, class: "btn btn--sm" %>
         <% else %>
-          <%= link_to "Registrarme", new_registration_path, class: "btn btn--sm btn--blue" %>
-          <%= link_to "Iniciar sesión", new_session_path, class: "btn btn--sm btn--blue" %>
+          <%= link_to "Registrarme como organizador", new_wedding_planner_registration_path, class: "mb1 btn btn--sm btn--orange" %>
+          <%= link_to "Registrarme", new_registration_path, class: "mb1 btn btn--sm btn--blue" %>
+          <%= link_to "Iniciar sesión", new_session_path, class: "mb1 btn btn--sm btn--blue" %>
         <% end %>
       </div>
     </div>
@@ -46,22 +49,22 @@
     <% if flash[:alert].present? %>
       <div class="alert alert--contained alert--error">
         <%= flash[:alert] %>
+        <button class="bn bg-transparent fr red pointer" data-action="alert#close">
+          <span class="fa fa-times">
+        </button>
       </div>
     <% end %>
 
     <% if flash[:notice].present? %>
       <div class="alert alert--contained alert--info">
         <%= flash[:notice] %>
+        <button class="bn bg-transparent fr blue pointer" data-action="alert#close">
+          <span class="fa fa-times">
+        </button>
       </div>
     <% end %>
 
     <%= yield %>
-
-    <%= link_to support_page_path, class: "support-btn btn btn--sm btn--blue" do %>
-      <span class="fa fa-question-circle"></span>
-      <span>Soporte</span>
-    <% end %>
-
 
     <% if Rails.env.production? %>
       <script>

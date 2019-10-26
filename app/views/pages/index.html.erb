@@ -1,66 +1,130 @@
-<% unless current_user? %>
-  <%= content_for :top_buttons do %>
-    <%= link_to "Registrarme", new_registration_path, class: "btn btn--sm btn--blue" %>
-    <%= link_to "Iniciar sesión", new_session_path, class: "btn btn--sm btn--blue" %>
-  <% end %>
-<% end %>
-
 <div class="pitch">
-  <h1 class="pitch__title">Te ayudamos a crear y confirmar la lista de invitados para tu evento.</h1>
+  <h1 class="f1-ns mw7 lh-title tc center mt5 mb3">¿Clientes frustrados con su lista de invitados?</h1>
+  <p class="f4-ns mw7 mb4 tc center lh-copy">
+  Da una mejor experiencia a tus clientes con una mejor herramienta para crear
+  su lista de invitados para su evento.
+  </p>
 
   <div class="pitch__btn-box">
-    <%= link_to "Crea gratis tu lista de invitados", new_registration_path, class: "btn btn--lg btn--blue" %>
+    <%= link_to "Quiero probar la herramienta", new_registration_path, class: "f4-ns f5 btn btn--lg btn--blue" %>
   </div>
 
-  <p>Tal vez ya te diste cuenta que hacer una lista de invitados no es tan fácil, ya que es normal:</p>
+  <div class="f4-ns mw7 lh-copy bt b--light-gray mt5-ns mt4 pt4 center">
+    <p class="mb4">
+    Sabemos que hacer la lista de invitados para un evento no es tan fácil, son
+    muchas cosas las que hay que tomar en cuenta... ¡Como para que aparte la
+    computadora empeore la situación!
+    </p>
 
-  <ul>
-    <li>Olvidar invitar personas importantes.</li>
-    <li>Invitar más personas de las que tu presupuesto permite.</li>
-    <li>Revolver o duplicar los invitados con tu novio, novia o otra persona involucrada en la organización.</li>
-    <li>Tener 1000 versiones diferentes del archivo de excel con la lista de invitados.</li>
-    <li>Perder registro de a quien has invitado.</li>
-    <li>No tener idea quien de tus invitados va asistir a tu boda.</li>
-    <li>Recibir confirmaciones por facebook, whatsapp, correo electrónico, la página de la boda, etc.</li>
-  </ul>
+    <p class="mb4">
+    Muy probablemente tu trates de ayudar a tus clientes con posibles técnicas
+    y los proveeas de  herramientas que pueden usar para facilitar el proceso,
+    pero no son muchas las opciones...
+    </p>
 
-  <p>Lo que tu quieres muy probablemente sea:</p>
+    <p class="mb4">
+    Normalmente usamos herramientas que fueron hechas para calculos financieros,
+    como excel, googlesheets, o alguna otra hoja de cálculo...
+    </p>
 
-  <ul>
-    <li>Tener una sola versión de la lista disponible para todos los organizadores.</li>
-    <li>Poder editar fácilmente la lista.</li>
-    <li>Poder llevar registro de a quien se han entregado invitaciones.</li>
-    <li>Poder llevar registro de las personas confirmadas.</li>
-    <li>Y en el mejor de los casos que te ayuden a confirmar a los invitados.</li>
-  </ul>
+    <p class="mb4">
+    O usamos herramientas que nos dan los sitios de bodas, que en realidad son
+    herramientas de publicidad para vender espacios a proveedores.
+    </p>
 
+    <p class="mb4">
+    Entonces tenemos clientes que con problemas como...
+    </p>
 
-  <p>Y esto es justo lo que obtendrás con Simple Guest List</p>
+    <ul class="list pl3">
+      <li class="mv3 lh-copy flex"><span class="mt2 mr2 red fa fa-times-circle"></span> Listas perdidas o duplicadas.</li>
+      <li class="mv3 lh-copy flex"><span class="mt2 mr2 red fa fa-times-circle"></span> Problemas al confirmar porque la lista esta en base a personas y no invitaciones.</li>
+      <li class="mv3 lh-copy flex"><span class="mt2 mr2 red fa fa-times-circle"></span> Páginas web lentas, que te hacen preferir escribir la lista en papel.</li>
+    </ul>
 
-  <p>Una aplicación web que te ayudará a:</li>
+    <p class="mb4">
+    ¿No sería ideal que nuestros clientes usaran <span class="fw6">una herramienta creada especialmente para ayudarlos en esta tarea</span>?
+    Que los ayudara a:
+    </p>
 
-  <ul>
-    <li>Visualizar y tener control de los invitados</li>
-    <li>Colaborar con los otros organizadores</li>
-    <li>Llevar registro de las invitaciones entregadas</li>
-    <li>Llevar registro de las personas confirmadas</li>
-    <li>Confirmar a los invitados automáticamente por correo electrónico</li>
-  </ul>
+    <ul class="list pl3">
+      <li class="mv3 lh-copy flex"><span class="mt2 mr2 blue fa fa-question-circle"></span> Compartir una lista única.</li>
+      <li class="mv3 lh-copy flex"><span class="mt2 mr2 blue fa fa-question-circle"></span> Ser eficientes registrando información.</li>
+      <li class="mv3 lh-copy flex"><span class="mt2 mr2 blue fa fa-question-circle"></span> Tener control de entrega de invitaciones.</li>
+      <li class="mv3 lh-copy flex"><span class="mt2 mr2 blue fa fa-question-circle"></span> Tener control de confirmaciones por invitación y no solo por persona.</li>
+    </ul>
 
-  <%= image_tag "screenshot.png", class: "pitch__screenshot alert alert--default" %>
+    <p class="mb4">
+    ¡Nosotros creemos que sí! Creemos que tus clientes merecen algo mejor. Por eso creamos Invita.app.
+    </p>
 
-  <h1 class="pitch__title">Noticias y Artículos</h1>
+    <p class="mb4">
+    Invita.app es una aplicación web diseñada especialmente para ayudar a tus
+    clientes a enfocarse en sus invitados y no en combatir herramientas creadas
+    para otros propositos...
+    </p>
 
-  <div class="text-center">
-    <% articles.each do |article| %>
-      <%= link_to article[:title], article_path(article[:slug]) %>
-      <br/>
-    <% end %>
-  </ul>
+    <p class="mb4">
+    Invita.app ayuda a tus clientes a:
+    </p>
 
-  <h2 class="pitch__title">¿Aún no has creado tu lista?</h2>
+    <ul class="list pl3">
+      <li class="mv3 lh-copy flex">
+        <span class="mt2 mr2 green fa fa-check-circle"></span>
+        <div>
+          <span class="fw6">Editar una sola lista</span>
+          <p class="mv2">
+          Tu podras crear listas y darles acceso a tus clientes y a las
+          personas que ellos necesiten como ayuda.
+          </p>
+        </div>
+      </li>
+      <li class="mv3 lh-copy flex">
+        <span class="mt2 mr2 green fa fa-check-circle"></span>
+        <div>
+          <span class="fw6">Registrar y editar invitados de forma eficiente</span>
+          <p class="mv2">
+          Tus clientes tendrán una pantalla diseñada especialmente para
+          introducir invitaciones con sus invitados.
+          </p>
+          <p class="mv2">
+          Podran llenar toda la lista sin dar un click al ratón y clasificar directamente
+          a los invitados por grupos.
+          </p>
+        </div>
+      </li>
+      <li class="mv3 lh-copy flex">
+        <span class="mt2 mr2 green fa fa-check-circle"></span>
+        <div>
+          <span class="fw6">Llevar el control de la entrega de invitaciones</span>
+          <p class="mv2">
+          Tus clientes verán a sus invitados agrupados por invitación, y podrán
+          ver la cuenta de invitaciones entregadas y las que faltan de
+          entregar, lo que hace la visualización más fácil que las herramientas
+          que solo enlistan a los invitados.
+          </p>
+        </div>
+      </li>
+      <li class="mv3 lh-copy flex">
+        <span class="mt2 mr2 green fa fa-check-circle"></span>
+        <div>
+          <span class="fw6">Llevar el control de confirmaciones por invitación</span>
+          <p class="mv2">
+          Tus clientes van a poder registrar las confirmaciones por invitación,
+          por lo que podran ver el total de confirmados por invitación, así
+          como total general y por grupos.
+          </p>
+        </div>
+      </li>
+    </ul>
 
-  <div class="pitch__btn-box">
-    <%= link_to "Crea gratis tu lista de invitados", new_registration_path, class: "btn btn--lg btn--blue" %>
+    <p class="mb4 tc">
+    ¿Qué opinas? ¿Crees que vale la pena darles una mejor experiencia a tus clientes?
+    ¿Te interesa probar la herramienta?
+    </p>
+
+    <div class="pitch__btn-box">
+      <%= link_to "Quiero probar la herramienta", new_registration_path, class: "f4-ns f5 btn btn--lg btn--blue" %>
+    </div>
   </div>
 </div>

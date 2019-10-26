@@ -1,0 +1,5 @@
+<%= form_for form, as: :access, url: list_access_url(list.id, person_id), method: :patch, html: {class: "form"} do |f| %>
+  <h1 class="form-title">Editar acceso a lista</h1>
+  <%= render "fields", form: form, f: f %>
+  <%= f.button "Actualizar", class: "btn btn--md btn--blue" %>
+<% end %>

@@ -3,7 +3,7 @@ module Validations
     attrs.map do |attr|
       value = data.send(attr)
       message = "no puede estar en blanco"
-      [attr, message] if value.nil? || value.empty?
+      [attr, message] if value.nil? || value == ""
     end
   end
 end

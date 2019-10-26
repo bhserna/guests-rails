@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170809232006) do
+ActiveRecord::Schema.define(version: 20191025232224) do
 
   create_table "list_invitation_records", force: :cascade do |t|
     t.string "list_id"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20170809232006) do
     t.string "wedding_roll"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "last_notification_sent_at"
   end
 
   create_table "list_records", force: :cascade do |t|
@@ -43,6 +44,7 @@ ActiveRecord::Schema.define(version: 20170809232006) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "event_date"
   end
 
   create_table "user_records", force: :cascade do |t|

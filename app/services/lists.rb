@@ -4,6 +4,14 @@ require_relative "lists/list_creator"
 require_relative "lists/access_control"
 
 module Lists
+  def self.mailer=(mailer)
+    @mailer = mailer
+  end
+
+  def self.mailer
+    @mailer
+  end
+
   def self.new_list_form
     ListCreator.new_list_form
   end
@@ -12,16 +20,21 @@ module Lists
     ListCreator.create_list(*args)
   end
 
-  def self.edit_list_name_form(list_id, store)
-    ListCreator.edit_list_name_form(list_id, store)
+  def self.edit_list_form(list_id, store)
+    ListCreator.edit_list_form(list_id, store)
   end
 
-  def self.update_list_name(list_id, data, store)
-    ListCreator.update_list_name(list_id, data, store)
+  def self.update_list(list_id, data, store)
+    ListCreator.update_list(list_id, data, store)
   end
 
-  def self.lists_of_user(user, lists_store)
-    lists_store.find_all_by_user_id(user.id).map { |record| List.new(record) }
+  def self.lists_of_user(user, lists_store, people_store)
+    records = lists_store.find_all_by_user_id(user.id)
+    list_ids = people_store.find_ids_of_lists_with_access_for_email(user.email)
+    records = (records + lists_store.find_all_by_list_ids(list_ids)).uniq
+    lists = records.map { |record| List.new(record) }
+    with_date, without_date = lists.partition(&:has_event_date?)
+    without_date + with_date.sort_by(&:event_date)
   end
 
   def self.get_list(list_id, lists_store)
@@ -31,11 +44,13 @@ module Lists
   def self.get_all_lists(lists_store, invitations_store, users_store)
     users = users_store.all.map{|data| User.new(data)}.group_by(&:id)
     invitations_counts = invitations_store.counts_by_list_id
-    lists_store.all
+    lists = lists_store.all
       .map{|data| List.new(data)}
-      .sort_by(&:created_at)
       .map{|list| ListWithUser.new(list, users[list.user_id].first)}
       .map{|list| ListWithInvitationsCount.new(list, invitations_counts[list.id] || 0)}
+
+    with_date, without_date = lists.partition(&:has_event_date?)
+    without_date + with_date.sort_by(&:event_date)
   end
 
   def self.current_access_details(*args)
@@ -64,6 +79,10 @@ module Lists
 
   def self.has_access?(*args)
     AccessControl.has_access?(*args)
+  end
+
+  def self.send_access_given_notification(*args)
+    AccessControl.send_access_given_notification(*args)
   end
 
   def self.get_invitation_form
@@ -146,13 +165,22 @@ module Lists
   end
 
   class List
-    attr_reader :id, :name, :user_id, :created_at
+    attr_reader :id, :name, :event_date, :user_id, :created_at
 
     def initialize(data)
       @id = data[:list_id]
       @name = data[:name]
+      @event_date = data[:event_date]
       @user_id = data[:user_id]
       @created_at = data[:created_at]
+    end
+
+    def owner?(user)
+      user_id.to_s == user.id.to_s
+    end
+
+    def has_event_date?
+      !event_date.nil?
     end
   end
 

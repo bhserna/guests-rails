@@ -1,8 +1,0 @@
-<%= form_for form, as: :list, url: list_name_url(list_id, group: params[:group]), method: :patch, html: {class: "form"} do |f| %>
-  <h1 class="form-title">Editar nombre de lista</h1>
-  <%= form_group f, :name,
-    label: "Nombre de la lista de invitados",
-    control_options: {placeholder: "Ejemplo: Nuestra boda"} %>
-  <%= f.button "Actualizar", class: "btn btn--md btn--blue" %>
-  <%= link_to "Cancelar", list_path(list_id, group: params[:group]), method: :get, class: "btn btn--md" %>
-<% end %>

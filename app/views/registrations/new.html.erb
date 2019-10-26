@@ -1,5 +1,14 @@
-<%= form_for form, as: :user, url: registrations_url, method: :post, html: {class: "form"} do |f| %>
-  <h1 class="form-title">Registrarme</h1>
+<div class="f4-ns lh-copy mw7 mt5 center tc">
+  <p>
+  ¡Hola, Bienvenid@!
+  <br/>Nosotros junto con tus organizadores, buscamos darte una mejor
+  experiencia al crear tu lista de invitados. Ahora para continuar
+  <strong>regístrate con el correo que diste a tus organizadores</strong>.
+  </p>
+</div>
+
+<%= form_for form, as: :user, url: registrations_url, method: :post, html: {class: "form mb6"} do |f| %>
+  <h1 class="form-title mt4">Registrarme</h1>
 
   <%= form_group f, :first_name, label: "Nombre" %>
   <%= form_group f, :last_name, label: "Apellidos" %>
