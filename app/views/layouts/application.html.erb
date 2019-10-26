@@ -49,22 +49,22 @@
     <% if flash[:alert].present? %>
       <div class="alert alert--contained alert--error">
         <%= flash[:alert] %>
+        <button class="bn bg-transparent fr red pointer" data-action="alert#close">
+          <span class="fa fa-times">
+        </button>
       </div>
     <% end %>
 
     <% if flash[:notice].present? %>
       <div class="alert alert--contained alert--info">
         <%= flash[:notice] %>
+        <button class="bn bg-transparent fr blue pointer" data-action="alert#close">
+          <span class="fa fa-times">
+        </button>
       </div>
     <% end %>
 
     <%= yield %>
-
-    <%= link_to support_page_path, class: "support-btn btn btn--sm btn--blue" do %>
-      <span class="fa fa-question-circle"></span>
-      <span>Soporte</span>
-    <% end %>
-
 
     <% if Rails.env.production? %>
       <script>

@@ -4,6 +4,14 @@ require_relative "lists/list_creator"
 require_relative "lists/access_control"
 
 module Lists
+  def self.mailer=(mailer)
+    @mailer = mailer
+  end
+
+  def self.mailer
+    @mailer
+  end
+
   def self.new_list_form
     ListCreator.new_list_form
   end
@@ -71,6 +79,10 @@ module Lists
 
   def self.has_access?(*args)
     AccessControl.has_access?(*args)
+  end
+
+  def self.send_access_given_notification(*args)
+    AccessControl.send_access_given_notification(*args)
   end
 
   def self.get_invitation_form

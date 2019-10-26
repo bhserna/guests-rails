@@ -47,6 +47,10 @@
                   <%= button_to list_access_path(list.id, person.id), method: :delete, class: "btn btn--sm js-btn-with-loading" do %>
                     <span class="fa fa-trash"></span>
                   <% end %>
+                  <%= button_to list_access_notifications_path(list.id, person.id), class: "btn btn--sm js-btn-with-loadign" do %>
+                    <span class="fa fa-paper-plane"></span>
+                    Avisar por correo
+                  <% end %>
                 </td>
               </tr>
             <% end %>

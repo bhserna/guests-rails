@@ -55,6 +55,15 @@ module Lists
       people_store.delete(id)
     end
 
+    def self.send_access_given_notification(id, current_time, people_store)
+      mailer.send_access_given_notification(id)
+      people_store.update(id, last_notification_sent_at: current_time)
+    end
+
+    def self.mailer
+      Lists.mailer
+    end
+
     WEDDING_ROLL_OPTIONS = {
       groom: "Novio",
       bride: "Novia",
