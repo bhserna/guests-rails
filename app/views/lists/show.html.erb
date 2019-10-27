@@ -133,12 +133,14 @@
                 <% end %>
               </td>
               <td class="list__actions-cell">
-                <%= link_to edit_list_invitation_path(list.id, invitation.id, group: params[:group]), class: "btn btn--sm" do %>
-                  <span class="fa fa-pencil"></span>
-                <% end %>
-                <%= button_to list_invitation_path(list.id, invitation.id, group: params[:group]), method: :delete, class: "btn btn--sm js-btn-with-loading", remote: true do %>
-                  <span class="fa fa-trash"></span>
-                <% end %>
+                <div class="flex">
+                  <%= link_to edit_list_invitation_path(list.id, invitation.id, group: params[:group]), class: "btn btn--sm ma1" do %>
+                    <span class="fa fa-pencil"></span>
+                  <% end %>
+                  <%= button_to list_invitation_path(list.id, invitation.id, group: params[:group]), method: :delete, class: "btn btn--sm ma1 js-btn-with-loading", remote: true do %>
+                    <span class="fa fa-trash"></span>
+                  <% end %>
+                </div>
               </td>
             </tr>
             <% end %>

@@ -64,7 +64,9 @@
       </div>
     <% end %>
 
-    <%= yield %>
+    <div class="pa2">
+      <%= yield %>
+    </div>
 
     <% if Rails.env.production? %>
       <script>

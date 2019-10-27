@@ -41,16 +41,18 @@
                 </td>
                 <td class="text-center"><%= person.wedding_roll %></td>
                 <td class="list__actions-cell">
-                  <%= link_to edit_list_access_path(list.id, person.id), class: "btn btn--sm" do %>
-                    <span class="fa fa-pencil"></span>
-                  <% end %>
-                  <%= button_to list_access_path(list.id, person.id), method: :delete, class: "btn btn--sm js-btn-with-loading" do %>
-                    <span class="fa fa-trash"></span>
-                  <% end %>
-                  <%= button_to list_access_notifications_path(list.id, person.id), class: "btn btn--sm js-btn-with-loadign" do %>
-                    <span class="fa fa-paper-plane"></span>
-                    Avisar por correo
-                  <% end %>
+                  <div class="flex">
+                    <%= link_to edit_list_access_path(list.id, person.id), class: "btn btn--sm ma1" do %>
+                      <span class="fa fa-pencil"></span>
+                    <% end %>
+                    <%= button_to list_access_path(list.id, person.id), method: :delete, class: "btn btn--sm ma1 js-btn-with-loading" do %>
+                      <span class="fa fa-trash"></span>
+                    <% end %>
+                    <%= button_to list_access_notifications_path(list.id, person.id), class: "btn btn--sm ma1 nowrap js-btn-with-loadign" do %>
+                      <span class="fa fa-paper-plane"></span>
+                      Avisar por correo
+                    <% end %>
+                  </div>
                 </td>
               </tr>
             <% end %>
